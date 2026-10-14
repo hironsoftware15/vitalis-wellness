@@ -21,9 +21,7 @@ platform :ios do
     )
 
     get_certificates(
-      api_key: api_key,
-      keychain_path: keychain_name,
-      keychain_password: keychain_password
+      api_key: api_key
     )
 
     get_provisioning_profile(
@@ -39,12 +37,10 @@ platform :ios do
       output_name: "Vitalis.ipa"
     )
 
-    upload_to_app_store(
+    upload_to_testflight(
       api_key: api_key,
       ipa: "./build/Vitalis.ipa",
-      skip_screenshots: true,
-      skip_metadata: true,
-      force: true
+      skip_waiting_for_build_processing: true
     )
   end
 end
