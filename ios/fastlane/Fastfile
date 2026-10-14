@@ -12,6 +12,10 @@ platform :ios do
 
     keychain_name = "ci_keychain"
     keychain_password = "vitalis_build_pass"
+    keychain_full_path = File.expand_path("~/Library/Keychains/#{keychain_name}-db")
+
+    delete_keychain(name: keychain_name) if File.exist?(keychain_full_path)
+
     create_keychain(
       name: keychain_name,
       password: keychain_password,
@@ -21,7 +25,9 @@ platform :ios do
     )
 
     get_certificates(
-      api_key: api_key
+      api_key: api_key,
+      keychain_path: keychain_full_path,
+      keychain_password: keychain_password
     )
 
     get_provisioning_profile(
