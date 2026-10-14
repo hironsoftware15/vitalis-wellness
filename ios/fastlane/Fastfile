@@ -35,10 +35,20 @@ platform :ios do
       app_identifier: "com.vitalis.wellness"
     )
 
+    team_id = ENV["sigh_com.vitalis.wellness_team_id"] || lane_context[SharedValues::SIGH_TEAM_ID]
+    UI.message("Detected Apple Team ID: #{team_id}")
+
+    update_project_team(
+      path: "Vitalis.xcodeproj",
+      teamid: team_id
+    )
+
     build_app(
       project: "Vitalis.xcodeproj",
       scheme: "Vitalis",
       export_method: "app-store",
+      export_team_id: team_id,
+      xcargs: "DEVELOPMENT_TEAM=#{team_id}",
       output_directory: "./build",
       output_name: "Vitalis.ipa"
     )
