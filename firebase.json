@@ -1,0 +1,57 @@
+{
+  "hosting": {
+    "site": "medicore-wellness",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "!.well-known/**",
+      "**/node_modules/**",
+      "functions/**",
+      "server.py",
+      "HealthConnectManager.kt",
+      "package.json",
+      "deploy_to_firebase.sh",
+      "android/**",
+      "ios/**"
+    ],
+    "headers": [
+      {
+        "source": "/.well-known/apple-app-site-association",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+      },
+      {
+        "source": "/.well-known/assetlinks.json",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+      }
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "function": "api"
+      },
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs20"
+  }
+}

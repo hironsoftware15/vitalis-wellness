@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Vitalis</string>
+    <string name="package_name">com.vitalis.wellness</string>
+    <string name="health_connect_rationale_title">Google Health Connect Integration</string>
+    <string name="health_connect_rationale_desc">Vitalis connects with Google Health Connect to securely read steps, heart rate metrics, sleep duration, and active energy expenditure from your Wear OS devices, Pixel Watch, and Fitbit.\n\nThis data is utilized strictly for real-time preventive coaching, circadian sleep optimization, and medication adherence reminders. Vitalis complies with Google Play Health Connect policy: your health data is never sold, transferred to third-party brokers, or used for advertising.</string>
+    <string name="health_connect_privacy_url">https://medicore-wellness.web.app/privacy-policy.html</string>
+    <string name="grant_permissions_button">Manage Health Connect Permissions</string>
+    <string name="open_privacy_policy_button">View Privacy Policy</string>
+</resources>

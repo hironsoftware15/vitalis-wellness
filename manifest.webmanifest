@@ -1,0 +1,67 @@
+{
+  "id": "com.vitalis.wellness",
+  "name": "Vitalis: AI Longevity Coach",
+  "short_name": "Vitalis",
+  "description": "Consumer Preventive Longevity, Zone-2 Fitness, Circadian Nutrition, Sleep Architecture, Medication Adherence & Habit Streaks.",
+  "start_url": "https://medicore-wellness.web.app/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0f1d",
+  "theme_color": "#06b6d4",
+  "categories": [
+    "health",
+    "fitness",
+    "lifestyle"
+  ],
+  "icons": [
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/feature-graphic.png",
+      "sizes": "1024x576",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Vitalis Longevity Command Center — Telemetry, Sleep & Habits"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Log Workout",
+      "short_name": "Workout",
+      "description": "Log Zone-2 cardio or resistance training",
+      "url": "https://medicore-wellness.web.app/#fitness"
+    },
+    {
+      "name": "Nutrition & Fasting",
+      "short_name": "Nutrition",
+      "description": "Log meals, water, and fasting window",
+      "url": "https://medicore-wellness.web.app/#nutrition"
+    },
+    {
+      "name": "Medications",
+      "short_name": "Meds",
+      "description": "Check off scheduled daily longevity supplements and medications",
+      "url": "https://medicore-wellness.web.app/#medications"
+    },
+    {
+      "name": "Longevity Coach",
+      "short_name": "AI Coach",
+      "description": "Chat with your Gemini 3.8 Flash longevity coach",
+      "url": "https://medicore-wellness.web.app/#coach"
+    }
+  ],
+  "prefer_related_applications": false
+}

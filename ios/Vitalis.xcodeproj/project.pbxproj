@@ -1,0 +1,278 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9B0100012A00000000000001 /* VitalisApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0100012A00000000000001 /* VitalisApp.swift */; };
+		9B0100022A00000000000001 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0100022A00000000000001 /* ContentView.swift */; };
+		9B0100032A00000000000001 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0100032A00000000000001 /* HealthKitManager.swift */; };
+		9B0100042A00000000000001 /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0100042A00000000000001 /* WebViewContainer.swift */; };
+		9B0100052A00000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F0100052A00000000000001 /* Assets.xcassets */; };
+		9BF000012A00000000000001 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF000012A00000000000001 /* HealthKit.framework */; };
+		9BF000022A00000000000001 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF000022A00000000000001 /* WebKit.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9F0100012A00000000000001 /* VitalisApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalisApp.swift; sourceTree = "<group>"; };
+		9F0100022A00000000000001 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9F0100032A00000000000001 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		9F0100042A00000000000001 /* WebViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewContainer.swift; sourceTree = "<group>"; };
+		9F0100052A00000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9F0100062A00000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F0100072A00000000000001 /* Vitalis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vitalis.entitlements; sourceTree = "<group>"; };
+		9FF000012A00000000000001 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		9FF000022A00000000000001 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		9FP000012A00000000000001 /* Vitalis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vitalis.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9PH000022A00000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9BF000012A00000000000001 /* HealthKit.framework in Frameworks */,
+				9BF000022A00000000000001 /* WebKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9G0000012A00000000000001 /* MainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				9G0000022A00000000000001 /* Vitalis */,
+				9G0000032A00000000000001 /* Frameworks */,
+				9G0000042A00000000000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9G0000022A00000000000001 /* Vitalis */ = {
+			isa = PBXGroup;
+			children = (
+				9F0100012A00000000000001 /* VitalisApp.swift */,
+				9F0100022A00000000000001 /* ContentView.swift */,
+				9F0100032A00000000000001 /* HealthKitManager.swift */,
+				9F0100042A00000000000001 /* WebViewContainer.swift */,
+				9F0100052A00000000000001 /* Assets.xcassets */,
+				9F0100062A00000000000001 /* Info.plist */,
+				9F0100072A00000000000001 /* Vitalis.entitlements */,
+			);
+			path = Vitalis;
+			sourceTree = "<group>";
+		};
+		9G0000032A00000000000001 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FF000012A00000000000001 /* HealthKit.framework */,
+				9FF000022A00000000000001 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9G0000042A00000000000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9FP000012A00000000000001 /* Vitalis.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9T0000012A00000000000001 /* Vitalis */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9CL000022A00000000000001 /* Build configuration list for PBXNativeTarget "Vitalis" */;
+			buildPhases = (
+				9PH000012A00000000000001 /* Sources */,
+				9PH000022A00000000000001 /* Frameworks */,
+				9PH000032A00000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Vitalis;
+			productName = Vitalis;
+			productReference = 9FP000012A00000000000001 /* Vitalis.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9PR000012A00000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					9T0000012A00000000000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = 9CL000012A00000000000001 /* Build configuration list for PBXProject "Vitalis" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9G0000012A00000000000001 /* MainGroup */;
+			productRefGroup = 9G0000042A00000000000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9T0000012A00000000000001 /* Vitalis */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9PH000032A00000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B0100052A00000000000001 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9PH000012A00000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9B0100012A00000000000001 /* VitalisApp.swift in Sources */,
+				9B0100022A00000000000001 /* ContentView.swift in Sources */,
+				9B0100032A00000000000001 /* HealthKitManager.swift in Sources */,
+				9B0100042A00000000000001 /* WebViewContainer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9BC000012A00000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		9BC000022A00000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		9BC000032A00000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Vitalis/Vitalis.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Vitalis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitalis.wellness;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9BC000042A00000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Vitalis/Vitalis.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Vitalis/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vitalis.wellness;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9CL000012A00000000000001 /* Build configuration list for PBXProject "Vitalis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BC000012A00000000000001 /* Debug */,
+				9BC000022A00000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9CL000022A00000000000001 /* Build configuration list for PBXNativeTarget "Vitalis" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9BC000032A00000000000001 /* Debug */,
+				9BC000042A00000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9PR000012A00000000000001 /* Project object */;
+}

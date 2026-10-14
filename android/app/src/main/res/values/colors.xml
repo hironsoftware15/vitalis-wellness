@@ -1,0 +1,11 @@
+<resources>
+    <color name="primaryColor">#0d9488</color>
+    <color name="primaryDarkColor">#0f172a</color>
+    <color name="accentColor">#14b8a6</color>
+    <color name="statusBarColor">#0f172a</color>
+    <color name="navigationBarColor">#0f172a</color>
+    <color name="backgroundColor">#0f172a</color>
+    <color name="cardBackground">#1e293b</color>
+    <color name="textPrimary">#f8fafc</color>
+    <color name="textSecondary">#94a3b8</color>
+</resources>

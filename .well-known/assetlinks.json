@@ -1,0 +1,22 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.vitalis.wellness",
+      "sha256_cert_fingerprints": [
+        "4D:1A:0E:DE:C8:15:6E:45:98:C5:1F:6D:23:95:19:2F:2E:BF:E3:73:F2:1D:93:04:6A:E5:71:AA:49:C8:5C:BA"
+      ]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.medicore.wellness",
+      "sha256_cert_fingerprints": [
+        "4D:1A:0E:DE:C8:15:6E:45:98:C5:1F:6D:23:95:19:2F:2E:BF:E3:73:F2:1D:93:04:6A:E5:71:AA:49:C8:5C:BA"
+      ]
+    }
+  }
+]

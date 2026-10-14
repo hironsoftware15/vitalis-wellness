@@ -1,0 +1,470 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:2:1-123:12
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:2:1-123:12
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:2:1-123:12
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:2:1-123:12
+MERGED from [com.google.android.material:material:1.11.0] /Users/ataurrahman/.gradle/caches/transforms-4/86d3ac55c914d16aa4b691283bda0a5f/transformed/material-1.11.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/ataurrahman/.gradle/caches/transforms-4/1a8af6ec028a50fc11c4b6ec4b079f50/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ataurrahman/.gradle/caches/transforms-4/699a9bb040b298f0cdc6e37bfb4188c1/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/ataurrahman/.gradle/caches/transforms-4/190acea1c67f3b48938357c739b524b3/transformed/appcompat-1.6.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:17:1-35:12
+MERGED from [com.google.androidbrowserhelper:androidbrowserhelper:2.5.0] /Users/ataurrahman/.gradle/caches/transforms-4/f81c975ea325a7cd7b6ea797b63717d8/transformed/jetified-androidbrowserhelper-2.5.0/AndroidManifest.xml:17:1-36:12
+MERGED from [androidx.browser:browser:1.8.0] /Users/ataurrahman/.gradle/caches/transforms-4/4b273d5714f4b1eb3342d46623c44d0e/transformed/browser-1.8.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/c4adc2bb63ea9112cb9bcc39c3f7b088/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/4b1ebcd3149fa544987ed170414c9bab/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/ataurrahman/.gradle/caches/transforms-4/0965761120c95ac1c230622d1b5bc097/transformed/fragment-1.3.6/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.activity:activity:1.8.0] /Users/ataurrahman/.gradle/caches/transforms-4/1bc2ce71b81748e267986c692bf1898c/transformed/jetified-activity-1.8.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/d9980beb315fac9728183c2b57c3285b/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/75391b7d96a474d58426492738a3996e/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/a8b150084e1357d3c8ec518a648a78f3/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.transition:transition:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/ed3946662eebfeaaded1dae502c52aaf/transformed/transition-1.2.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/bf7a357595b3246c588b179767e0a882/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/585164b2c8c2248febb9f29960393005/transformed/vectordrawable-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/3302dad9feeb21121e15e63bc63d9ef5/transformed/viewpager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/13300d56acf8524b6c42a7b8c2b50d10/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.loader:loader:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/eb8f0840dd8e87b97f6ff2044b8d6a27/transformed/loader-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/cc785ec7237939d778acd214c48f7efe/transformed/recyclerview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.customview:customview:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/7a60fb87255bb83f032162f50923141a/transformed/customview-1.1.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:17:1-30:12
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/ataurrahman/.gradle/caches/transforms-4/3eb69a9e7131a5cc5f79800a839439df/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/c28b23e2a4a15f2185dcccefbe988b83/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/40bd70700f6e6dadaadfeabe6bfcf978/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:17:1-35:12
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/503b3bfce9b1d7ca13438f4a524cca02/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/b0e689a662f5901855c205b8c92be03c/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/e2acaf13ec12435067af08f7e62d21ef/transformed/jetified-lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/b6598627e8c6aee1b764c1488774d7f0/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/ataurrahman/.gradle/caches/transforms-4/52322ea20c6324b8328e5f2bd6e98791/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/5e62fc89da7954c0047b4bf736e175bb/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c3e6459e9a82df49108778c59a7b167/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/6b379974b2ddc5d1a4b0d11b2fe26cdf/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/e66eef1d521fa9cd544bd7af987d0a39/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:17:1-55:12
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/57e24f3143fda04eb4d9f0e2819a8b78/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/520fc7c5ae52f8eeb45f92883d829664/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/45983ee6bdef407d9f022790e99d92fc/transformed/documentfile-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/be2244f113fa3145a99d47a8ffda386c/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.print:print:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/1892529938447803e2c028820d0da01d/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
+	package
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:4:5-35
+		INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:3:5-51
+	android:versionCode
+		INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:2:11-69
+uses-permission#android.permission.INTERNET
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:7:5-67
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:7:22-64
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:8:5-79
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:8:22-76
+uses-permission#android.permission.POST_NOTIFICATIONS
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:9:5-77
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:9:22-74
+uses-permission#android.permission.health.READ_STEPS
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:12:5-76
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:12:22-73
+uses-permission#android.permission.health.WRITE_STEPS
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:13:5-77
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:13:22-74
+uses-permission#android.permission.health.READ_HEART_RATE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:14:5-81
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:14:22-78
+uses-permission#android.permission.health.READ_SLEEP
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:15:5-76
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:15:22-73
+uses-permission#android.permission.health.READ_NUTRITION
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:16:5-80
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:16:22-77
+uses-permission#android.permission.health.WRITE_NUTRITION
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:17:5-81
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:17:22-78
+uses-permission#android.permission.health.READ_TOTAL_CALORIES_BURNED
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:18:5-92
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:18:22-89
+queries
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:21:5-26:15
+MERGED from [com.google.androidbrowserhelper:androidbrowserhelper:2.5.0] /Users/ataurrahman/.gradle/caches/transforms-4/f81c975ea325a7cd7b6ea797b63717d8/transformed/jetified-androidbrowserhelper-2.5.0/AndroidManifest.xml:26:5-34:15
+MERGED from [com.google.androidbrowserhelper:androidbrowserhelper:2.5.0] /Users/ataurrahman/.gradle/caches/transforms-4/f81c975ea325a7cd7b6ea797b63717d8/transformed/jetified-androidbrowserhelper-2.5.0/AndroidManifest.xml:26:5-34:15
+package#com.google.android.apps.healthdata
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:22:9-70
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:22:18-67
+intent#action:name:androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:23:9-25:18
+action#androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:24:13-88
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:24:21-85
+application
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:28:5-121:19
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:28:5-121:19
+MERGED from [com.google.android.material:material:1.11.0] /Users/ataurrahman/.gradle/caches/transforms-4/86d3ac55c914d16aa4b691283bda0a5f/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.material:material:1.11.0] /Users/ataurrahman/.gradle/caches/transforms-4/86d3ac55c914d16aa4b691283bda0a5f/transformed/material-1.11.0/AndroidManifest.xml:22:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ataurrahman/.gradle/caches/transforms-4/699a9bb040b298f0cdc6e37bfb4188c1/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ataurrahman/.gradle/caches/transforms-4/699a9bb040b298f0cdc6e37bfb4188c1/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/6b379974b2ddc5d1a4b0d11b2fe26cdf/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/6b379974b2ddc5d1a4b0d11b2fe26cdf/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:23:5-53:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+	android:extractNativeLibs
+		INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+	android:appComponentFactory
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
+	android:supportsRtl
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:33:9-35
+	android:label
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:32:9-41
+	android:roundIcon
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:31:9-54
+	tools:targetApi
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:35:9-29
+	android:icon
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:30:9-43
+	android:allowBackup
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:29:9-35
+	android:theme
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:34:9-54
+activity#com.vitalis.wellness.LauncherActivity
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:38:9-95:20
+	android:label
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:41:13-45
+	android:exported
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:40:13-36
+	android:theme
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:42:13-58
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:39:13-45
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:44:13-47:29
+action#android.intent.action.MAIN
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:45:17-69
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:45:25-66
+category#android.intent.category.LAUNCHER
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:46:17-77
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:46:27-74
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:medicore-wellness.web.app+data:pathPrefix:/+data:scheme:https
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:50:13-58:29
+	android:autoVerify
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:50:28-53
+action#android.intent.action.VIEW
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:51:17-69
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:51:25-66
+category#android.intent.category.DEFAULT
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:52:17-76
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:52:27-73
+category#android.intent.category.BROWSABLE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:53:17-78
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:53:27-75
+data
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:54:17-57:46
+	android:host
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:56:21-61
+	android:scheme
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:55:21-43
+	android:pathPrefix
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:57:21-43
+intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+category:name:android.intent.category.DEFAULT+data:host:medicore-wellness.firebaseapp.com+data:pathPrefix:/+data:scheme:https
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:61:13-69:29
+	android:autoVerify
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:61:28-53
+meta-data#android.support.customtabs.trusted.DEFAULT_URL
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:72:13-74:70
+	android:value
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:74:17-67
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:73:17-78
+meta-data#android.support.customtabs.trusted.STATUS_BAR_COLOR
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:76:13-78:60
+	android:resource
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:78:17-57
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:77:17-83
+meta-data#android.support.customtabs.trusted.NAVIGATION_BAR_COLOR
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:80:13-82:64
+	android:resource
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:82:17-61
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:81:17-87
+meta-data#android.support.customtabs.trusted.SPLASH_IMAGE_DRAWABLE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:84:13-86:58
+	android:resource
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:86:17-55
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:85:17-88
+meta-data#android.support.customtabs.trusted.SPLASH_SCREEN_BACKGROUND_COLOR
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:88:13-90:61
+	android:resource
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:90:17-58
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:89:17-97
+meta-data#android.support.customtabs.trusted.FILE_PROVIDER_AUTHORITY
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:92:13-94:69
+	android:value
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:94:17-66
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:93:17-90
+activity#com.vitalis.wellness.PermissionsRationaleActivity
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:98:9-114:20
+	android:label
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:101:13-65
+	android:exported
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:100:13-36
+	android:theme
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:102:13-55
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:99:13-57
+intent-filter#action:name:androidx.health.ACTION_SHOW_PERMISSIONS_RATIONALE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:105:13-107:29
+intent-filter#action:name:android.intent.action.VIEW_PERMISSION_USAGE+category:name:android.intent.category.HEALTH_PERMISSIONS
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:110:13-113:29
+action#android.intent.action.VIEW_PERMISSION_USAGE
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:111:17-86
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:111:25-83
+category#android.intent.category.HEALTH_PERMISSIONS
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:112:17-87
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:112:27-84
+meta-data#health_permissions
+ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:117:9-119:51
+	android:resource
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:119:13-48
+	android:name
+		ADDED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml:118:13-46
+uses-sdk
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+MERGED from [com.google.android.material:material:1.11.0] /Users/ataurrahman/.gradle/caches/transforms-4/86d3ac55c914d16aa4b691283bda0a5f/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.material:material:1.11.0] /Users/ataurrahman/.gradle/caches/transforms-4/86d3ac55c914d16aa4b691283bda0a5f/transformed/material-1.11.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/ataurrahman/.gradle/caches/transforms-4/1a8af6ec028a50fc11c4b6ec4b079f50/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] /Users/ataurrahman/.gradle/caches/transforms-4/1a8af6ec028a50fc11c4b6ec4b079f50/transformed/jetified-appcompat-resources-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ataurrahman/.gradle/caches/transforms-4/699a9bb040b298f0cdc6e37bfb4188c1/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /Users/ataurrahman/.gradle/caches/transforms-4/699a9bb040b298f0cdc6e37bfb4188c1/transformed/constraintlayout-2.0.1/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/ataurrahman/.gradle/caches/transforms-4/190acea1c67f3b48938357c739b524b3/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat:1.6.1] /Users/ataurrahman/.gradle/caches/transforms-4/190acea1c67f3b48938357c739b524b3/transformed/appcompat-1.6.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:21:5-44
+MERGED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:21:5-44
+MERGED from [com.google.androidbrowserhelper:androidbrowserhelper:2.5.0] /Users/ataurrahman/.gradle/caches/transforms-4/f81c975ea325a7cd7b6ea797b63717d8/transformed/jetified-androidbrowserhelper-2.5.0/AndroidManifest.xml:22:5-24:41
+MERGED from [com.google.androidbrowserhelper:androidbrowserhelper:2.5.0] /Users/ataurrahman/.gradle/caches/transforms-4/f81c975ea325a7cd7b6ea797b63717d8/transformed/jetified-androidbrowserhelper-2.5.0/AndroidManifest.xml:22:5-24:41
+MERGED from [androidx.browser:browser:1.8.0] /Users/ataurrahman/.gradle/caches/transforms-4/4b273d5714f4b1eb3342d46623c44d0e/transformed/browser-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.browser:browser:1.8.0] /Users/ataurrahman/.gradle/caches/transforms-4/4b273d5714f4b1eb3342d46623c44d0e/transformed/browser-1.8.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/c4adc2bb63ea9112cb9bcc39c3f7b088/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2-views-helper:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/c4adc2bb63ea9112cb9bcc39c3f7b088/transformed/jetified-emoji2-views-helper-1.2.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/4b1ebcd3149fa544987ed170414c9bab/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager2:viewpager2:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/4b1ebcd3149fa544987ed170414c9bab/transformed/jetified-viewpager2-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/ataurrahman/.gradle/caches/transforms-4/0965761120c95ac1c230622d1b5bc097/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.fragment:fragment:1.3.6] /Users/ataurrahman/.gradle/caches/transforms-4/0965761120c95ac1c230622d1b5bc097/transformed/fragment-1.3.6/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.activity:activity:1.8.0] /Users/ataurrahman/.gradle/caches/transforms-4/1bc2ce71b81748e267986c692bf1898c/transformed/jetified-activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.activity:activity:1.8.0] /Users/ataurrahman/.gradle/caches/transforms-4/1bc2ce71b81748e267986c692bf1898c/transformed/jetified-activity-1.8.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/d9980beb315fac9728183c2b57c3285b/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/d9980beb315fac9728183c2b57c3285b/transformed/drawerlayout-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/75391b7d96a474d58426492738a3996e/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/75391b7d96a474d58426492738a3996e/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/a8b150084e1357d3c8ec518a648a78f3/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.dynamicanimation:dynamicanimation:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/a8b150084e1357d3c8ec518a648a78f3/transformed/dynamicanimation-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.transition:transition:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/ed3946662eebfeaaded1dae502c52aaf/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.transition:transition:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/ed3946662eebfeaaded1dae502c52aaf/transformed/transition-1.2.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/bf7a357595b3246c588b179767e0a882/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/bf7a357595b3246c588b179767e0a882/transformed/vectordrawable-animated-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/585164b2c8c2248febb9f29960393005/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/585164b2c8c2248febb9f29960393005/transformed/vectordrawable-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/3302dad9feeb21121e15e63bc63d9ef5/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.viewpager:viewpager:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/3302dad9feeb21121e15e63bc63d9ef5/transformed/viewpager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/13300d56acf8524b6c42a7b8c2b50d10/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/13300d56acf8524b6c42a7b8c2b50d10/transformed/legacy-support-core-utils-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/eb8f0840dd8e87b97f6ff2044b8d6a27/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.loader:loader:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/eb8f0840dd8e87b97f6ff2044b8d6a27/transformed/loader-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/cc785ec7237939d778acd214c48f7efe/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.recyclerview:recyclerview:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/cc785ec7237939d778acd214c48f7efe/transformed/recyclerview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/7a60fb87255bb83f032162f50923141a/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.customview:customview:1.1.0] /Users/ataurrahman/.gradle/caches/transforms-4/7a60fb87255bb83f032162f50923141a/transformed/customview-1.1.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/ataurrahman/.gradle/caches/transforms-4/3eb69a9e7131a5cc5f79800a839439df/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.savedstate:savedstate:1.2.1] /Users/ataurrahman/.gradle/caches/transforms-4/3eb69a9e7131a5cc5f79800a839439df/transformed/jetified-savedstate-1.2.1/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/c28b23e2a4a15f2185dcccefbe988b83/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/c28b23e2a4a15f2185dcccefbe988b83/transformed/lifecycle-livedata-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/40bd70700f6e6dadaadfeabe6bfcf978/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/40bd70700f6e6dadaadfeabe6bfcf978/transformed/lifecycle-viewmodel-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:21:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/503b3bfce9b1d7ca13438f4a524cca02/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/503b3bfce9b1d7ca13438f4a524cca02/transformed/lifecycle-livedata-core-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/b0e689a662f5901855c205b8c92be03c/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/b0e689a662f5901855c205b8c92be03c/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:5:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/e2acaf13ec12435067af08f7e62d21ef/transformed/jetified-lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/e2acaf13ec12435067af08f7e62d21ef/transformed/jetified-lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/b6598627e8c6aee1b764c1488774d7f0/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.core:core-ktx:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/b6598627e8c6aee1b764c1488774d7f0/transformed/jetified-core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/ataurrahman/.gradle/caches/transforms-4/52322ea20c6324b8328e5f2bd6e98791/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.annotation:annotation-experimental:1.4.0] /Users/ataurrahman/.gradle/caches/transforms-4/52322ea20c6324b8328e5f2bd6e98791/transformed/jetified-annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/5e62fc89da7954c0047b4bf736e175bb/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/5e62fc89da7954c0047b4bf736e175bb/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c3e6459e9a82df49108778c59a7b167/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c3e6459e9a82df49108778c59a7b167/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/6b379974b2ddc5d1a4b0d11b2fe26cdf/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/6b379974b2ddc5d1a4b0d11b2fe26cdf/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/e66eef1d521fa9cd544bd7af987d0a39/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/e66eef1d521fa9cd544bd7af987d0a39/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:21:5-44
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/57e24f3143fda04eb4d9f0e2819a8b78/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/57e24f3143fda04eb4d9f0e2819a8b78/transformed/jetified-tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/520fc7c5ae52f8eeb45f92883d829664/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.arch.core:core-runtime:2.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/520fc7c5ae52f8eeb45f92883d829664/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/45983ee6bdef407d9f022790e99d92fc/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.documentfile:documentfile:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/45983ee6bdef407d9f022790e99d92fc/transformed/documentfile-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/be2244f113fa3145a99d47a8ffda386c/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/be2244f113fa3145a99d47a8ffda386c/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/1892529938447803e2c028820d0da01d/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.print:print:1.0.0] /Users/ataurrahman/.gradle/caches/transforms-4/1892529938447803e2c028820d0da01d/transformed/print-1.0.0/AndroidManifest.xml:20:5-44
+	android:targetSdkVersion
+		INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/android/app/src/main/AndroidManifest.xml
+service#androidx.health.platform.client.impl.sdkservice.HealthDataSdkService
+ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:24:9-32:19
+	android:enabled
+		ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:26:13-35
+	android:exported
+		ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:27:13-36
+	tools:ignore
+		ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:28:13-43
+	android:name
+		ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:25:13-96
+intent-filter#action:name:androidx.health.platform.client.ACTION_BIND_SDK_SERVICE
+ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:29:13-31:29
+action#androidx.health.platform.client.ACTION_BIND_SDK_SERVICE
+ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:30:17-98
+	android:name
+		ADDED from [androidx.health.connect:connect-client:1.1.0-alpha11] /Users/ataurrahman/.gradle/caches/transforms-4/df37d572b962cb7cf01e5a91ab14e7b2/transformed/jetified-connect-client-1.1.0-alpha11/AndroidManifest.xml:30:25-95
+intent#action:name:android.intent.action.VIEW+category:name:android.intent.category.BROWSABLE+data:scheme:https
+ADDED from [com.google.androidbrowserhelper:androidbrowserhelper:2.5.0] /Users/ataurrahman/.gradle/caches/transforms-4/f81c975ea325a7cd7b6ea797b63717d8/transformed/jetified-androidbrowserhelper-2.5.0/AndroidManifest.xml:27:9-33:18
+provider#androidx.startup.InitializationProvider
+ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /Users/ataurrahman/.gradle/caches/transforms-4/2f6beb1c3d351ba7c2a6efd8ff0cb648/transformed/jetified-startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:28:13-31
+	android:authorities
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:26:13-68
+	android:exported
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:27:13-37
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:25:13-67
+meta-data#androidx.emoji2.text.EmojiCompatInitializer
+ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.emoji2:emoji2:1.2.0] /Users/ataurrahman/.gradle/caches/transforms-4/0e40e48abcee7887c3120c2023afc09c/transformed/jetified-emoji2-1.2.0/AndroidManifest.xml:30:17-75
+permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+permission#com.vitalis.wellness.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:22:5-24:47
+	android:protectionLevel
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:24:9-44
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:23:9-81
+uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+uses-permission#com.vitalis.wellness.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
+ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:26:5-97
+	android:name
+		ADDED from [androidx.core:core:1.13.1] /Users/ataurrahman/.gradle/caches/transforms-4/8e78dd0e61f0c3085c8585dc85582661/transformed/core-1.13.1/AndroidManifest.xml:26:22-94
+meta-data#androidx.lifecycle.ProcessLifecycleInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.6.2] /Users/ataurrahman/.gradle/caches/transforms-4/60e5a67a166da73fc59a3ad2089c52d6/transformed/jetified-lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+meta-data#androidx.profileinstaller.ProfileInstallerInitializer
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+	android:value
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+receiver#androidx.profileinstaller.ProfileInstallReceiver
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+	android:enabled
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+	android:exported
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+	android:permission
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+	android:directBootAware
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+intent-filter#action:name:androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+action#androidx.profileinstaller.action.INSTALL_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+intent-filter#action:name:androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+action#androidx.profileinstaller.action.SKIP_FILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+intent-filter#action:name:androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+action#androidx.profileinstaller.action.SAVE_PROFILE
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+intent-filter#action:name:androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+action#androidx.profileinstaller.action.BENCHMARK_OPERATION
+ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+	android:name
+		ADDED from [androidx.profileinstaller:profileinstaller:1.3.0] /Users/ataurrahman/.gradle/caches/transforms-4/1c925b1b5312eb9e21935ee26e969cc4/transformed/jetified-profileinstaller-1.3.0/AndroidManifest.xml:50:25-92

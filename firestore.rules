@@ -1,0 +1,64 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper function to verify user authentication
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    // Helper function to verify document ownership
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User Profile & Preventive Health Score
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      // Fitness Plans subcollection
+      match /fitness_plans/{planId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Workouts and telemetry logged via Google Health Connect
+      match /workouts/{workoutId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Nutrition logs and meal scans
+      match /nutrition_logs/{mealId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Sleep sessions (deep, REM, light stages from Wear OS / Fitbit)
+      match /sleep_sessions/{sessionId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Medication schedules and adherence logs
+      match /medications/{medId} {
+        allow read, write: if isOwner(userId);
+        
+        match /adherence_logs/{logId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+
+      // Habit streaks and daily check-ins
+      match /habits/{habitId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Gemini AI Coach conversation history
+      match /coach_conversations/{convId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Default deny all other access
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

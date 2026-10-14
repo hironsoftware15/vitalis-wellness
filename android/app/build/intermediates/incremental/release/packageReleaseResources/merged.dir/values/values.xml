@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accentColor">#14b8a6</color>
+    <color name="backgroundColor">#0f172a</color>
+    <color name="cardBackground">#1e293b</color>
+    <color name="navigationBarColor">#0f172a</color>
+    <color name="primaryColor">#0d9488</color>
+    <color name="primaryDarkColor">#0f172a</color>
+    <color name="statusBarColor">#0f172a</color>
+    <color name="textPrimary">#f8fafc</color>
+    <color name="textSecondary">#94a3b8</color>
+    <string name="appName" translatable="false">Vitalis</string>
+    <string name="app_name">Vitalis</string>
+    <string name="defaultUrl" translatable="false">https://medicore-wellness.web.app/</string>
+    <string name="grant_permissions_button">Manage Health Connect Permissions</string>
+    <string name="health_connect_privacy_url">https://medicore-wellness.web.app/privacy-policy.html</string>
+    <string name="health_connect_rationale_desc">Vitalis connects with Google Health Connect to securely read steps, heart rate metrics, sleep duration, and active energy expenditure from your Wear OS devices, Pixel Watch, and Fitbit.\n\nThis data is utilized strictly for real-time preventive coaching, circadian sleep optimization, and medication adherence reminders. Vitalis complies with Google Play Health Connect policy: your health data is never sold, transferred to third-party brokers, or used for advertising.</string>
+    <string name="health_connect_rationale_title">Google Health Connect Integration</string>
+    <string name="hostName" translatable="false">medicore-wellness.web.app</string>
+    <string name="open_privacy_policy_button">View Privacy Policy</string>
+    <string name="package_name">com.vitalis.wellness</string>
+    <string name="webManifestUrl" translatable="false">https://medicore-wellness.web.app/manifest.webmanifest</string>
+    <style name="Theme.AegisWellness" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/accentColor</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:statusBarColor">@color/statusBarColor</item>
+        <item name="android:navigationBarColor">@color/navigationBarColor</item>
+    </style>
+    <style name="Theme.LauncherActivity" parent="Theme.AegisWellness">
+        
+        <item name="android:windowBackground">@color/backgroundColor</item>
+    </style>
+</resources>

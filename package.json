@@ -1,0 +1,19 @@
+{
+  "name": "google-preventive-health-coach",
+  "version": "1.0.0",
+  "description": "Preventive Health & Wellness Coaching App built on Google Platform (Firebase, Google Health Connect, Gemini AI)",
+  "main": "server.py",
+  "scripts": {
+    "start": "python3 server.py"
+  },
+  "keywords": [
+    "preventive-health",
+    "wellness",
+    "gemini-ai",
+    "health-connect",
+    "firebase",
+    "google-cloud"
+  ],
+  "author": "Antigravity Engineering",
+  "license": "MIT"
+}

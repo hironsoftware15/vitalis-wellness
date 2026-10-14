@@ -1,0 +1,31 @@
+R_DEF: Internal format may change without notice
+local
+color accentColor
+color backgroundColor
+color cardBackground
+color navigationBarColor
+color primaryColor
+color primaryDarkColor
+color statusBarColor
+color textPrimary
+color textSecondary
+id btnClose
+id btnOpenPrivacy
+id textRationale
+id textTitle
+layout activity_permissions_rationale
+mipmap ic_launcher
+mipmap ic_launcher_round
+string appName
+string app_name
+string defaultUrl
+string grant_permissions_button
+string health_connect_privacy_url
+string health_connect_rationale_desc
+string health_connect_rationale_title
+string hostName
+string open_privacy_policy_button
+string package_name
+string webManifestUrl
+style Theme.AegisWellness
+style Theme.LauncherActivity

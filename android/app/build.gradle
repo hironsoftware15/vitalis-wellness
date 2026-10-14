@@ -1,0 +1,80 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.vitalis.wellness'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "com.vitalis.wellness"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+
+        // TWA configuration resValues
+        resValue "string", "appName", "Vitalis"
+        resValue "string", "hostName", "medicore-wellness.web.app"
+        resValue "string", "defaultUrl", "https://medicore-wellness.web.app/"
+        resValue "string", "webManifestUrl", "https://medicore-wellness.web.app/manifest.webmanifest"
+    }
+
+    signingConfigs {
+        release {
+            storeFile file(System.getenv("KEYSTORE_PATH") ?: "keystore.jks")
+            storePassword System.getenv("KEYSTORE_PASSWORD") ?: "vitalispass"
+            keyAlias System.getenv("KEY_ALIAS") ?: "vitalis"
+            keyPassword System.getenv("KEY_PASSWORD") ?: "vitalispass"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            applicationIdSuffix ".debug"
+            debuggable true
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    buildFeatures {
+        viewBinding false
+    }
+}
+
+dependencies {
+    // AndroidX & Core
+    implementation 'androidx.core:core-ktx:1.13.1'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.11.0'
+
+    // Trusted Web Activity (TWA) - Google Android Browser Helper
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:2.5.0'
+    implementation 'androidx.browser:browser:1.8.0'
+
+    // Google Health Connect Client (Wear OS, Pixel Watch, Fitbit, Samsung Health)
+    implementation 'androidx.health.connect:connect-client:1.1.0-alpha11'
+
+    // Coroutines
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.8.0'
+}
