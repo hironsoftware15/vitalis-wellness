@@ -23,6 +23,25 @@
     <key>LSRequiresIPhoneOS</key>
     <true/>
     
+    <!-- Supported Interface Orientations for iPhone and iPad Multitasking -->
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    <key>UISupportedInterfaceOrientations~ipad</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+        <string>UIInterfaceOrientationPortraitUpsideDown</string>
+        <string>UIInterfaceOrientationLandscapeLeft</string>
+        <string>UIInterfaceOrientationLandscapeRight</string>
+    </array>
+    
+    <!-- Export Compliance: No Non-Exempt Encryption -->
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+    
     <!-- Apple HealthKit Privacy Usage Descriptions (Strictly Required for App Store Approval) -->
     <key>NSHealthShareUsageDescription</key>
     <string>Vitalis reads your daily steps, heart rate variability (HRV), resting heart rate, active calories, and sleep stages from Apple Watch and Apple Health to calculate your personalized Longevity Readiness Score and provide circadian wellness coaching.</string>
