@@ -1,0 +1,50 @@
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and upload Vitalis to App Store Connect"
+  lane :release do
+    api_key = app_store_connect_api_key(
+      key_id: ENV["APPSTORE_KEY_ID"],
+      issuer_id: ENV["APPSTORE_ISSUER_ID"],
+      key_content: ENV["APPSTORE_PRIVATE_KEY"],
+      is_key_content_base64: false
+    )
+
+    keychain_name = "ci_keychain"
+    keychain_password = "vitalis_build_pass"
+    create_keychain(
+      name: keychain_name,
+      password: keychain_password,
+      default_keychain: true,
+      unlock: true,
+      timeout: 3600
+    )
+
+    get_certificates(
+      api_key: api_key,
+      keychain_path: keychain_name,
+      keychain_password: keychain_password
+    )
+
+    get_provisioning_profile(
+      api_key: api_key,
+      app_identifier: "com.vitalis.wellness"
+    )
+
+    build_app(
+      project: "Vitalis.xcodeproj",
+      scheme: "Vitalis",
+      export_method: "app-store",
+      output_directory: "./build",
+      output_name: "Vitalis.ipa"
+    )
+
+    upload_to_app_store(
+      api_key: api_key,
+      ipa: "./build/Vitalis.ipa",
+      skip_screenshots: true,
+      skip_metadata: true,
+      force: true
+    )
+  end
+end
