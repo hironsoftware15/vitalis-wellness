@@ -3,13 +3,11 @@
  * Provides offline resilience, shell caching, and push notifications
  */
 
-const CACHE_NAME = 'aegis-health-v1';
+const CACHE_NAME = 'vitalis-longevity-v2';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
-  '/manifest.webmanifest',
-  '/assets/icon-512.jpg',
-  '/assets/feature-graphic.jpg'
+  '/manifest.webmanifest'
 ];
 
 // Install Event: Pre-cache static app shell
