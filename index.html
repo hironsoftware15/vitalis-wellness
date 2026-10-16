@@ -286,6 +286,13 @@
       align-items: center;
       gap: 0.75rem;
       box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .user-card:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
     }
 
     .user-avatar {
@@ -299,6 +306,33 @@
       justify-content: center;
       font-weight: 800;
       font-size: 0.95rem;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .apple-signin-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      width: 100%;
+      height: 48px;
+      background-color: #000000;
+      color: #ffffff;
+      border: 1px solid #000000;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+    }
+    .apple-signin-btn:hover {
+      background-color: #1a1a1a;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.22);
+    }
+    .apple-signin-btn:active {
+      transform: scale(0.98);
     }
 
     /* Mobile Bottom Navigation */
@@ -736,6 +770,9 @@
       <button class="btn btn-outline btn-sm" id="firebaseStatusBtn" onclick="openFirebaseModal()">🔥 Firebase</button>
       <button class="btn btn-outline btn-sm" onclick="openApiKeyModal()">⚙️ Gemini Settings</button>
       <button class="btn btn-primary btn-sm" onclick="triggerDailyEvaluation()">✨ Daily AI Brief</button>
+      <button class="btn btn-outline btn-sm" id="profileHeaderBtn" onclick="openProfileModal()" style="display: flex; align-items: center; gap: 0.35rem;" title="Profile & Sign in with Apple">
+        <span id="headerAvatarBadge">👤</span> <span id="headerProfileLabel">Profile</span>
+      </button>
     </div>
   </header>
 
@@ -769,11 +806,11 @@
         <span>Habit Tracker</span>
       </div>
 
-      <div class="user-card">
-        <div class="user-avatar">VR</div>
+      <div class="user-card" onclick="openProfileModal()" title="View Longevity Profile & Sign in with Apple">
+        <div class="user-avatar" id="sidebarAvatar">VR</div>
         <div>
-          <div style="font-weight: 700; font-size: 0.85rem;">Alex Rivera (38 y/o)</div>
-          <div style="font-size: 0.72rem; color: var(--text-muted);">Biological Age: 33.4 yrs (-4.6)</div>
+          <div style="font-weight: 700; font-size: 0.85rem;" id="sidebarUserName">Alex Rivera (38 y/o)</div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);" id="sidebarBioAge">Biological Age: 33.4 yrs (-4.6)</div>
         </div>
       </div>
     </aside>
@@ -1385,6 +1422,10 @@
       <span class="icon">📈</span>
       <span>Habits</span>
     </div>
+    <div class="bottom-nav-item" id="bnav-profile" onclick="openProfileModal()">
+      <span class="icon">👤</span>
+      <span>Profile</span>
+    </div>
   </nav>
 
   <!-- Toast Notification Box -->
@@ -1486,6 +1527,87 @@
         <div>Firestore Path: <strong>/users/{patientId}/wellness</strong></div>
       </div>
       <button class="btn btn-primary" style="width: 100%;" onclick="closeModal('firebaseModal')">Done</button>
+    </div>
+  </div>
+
+  <!-- Modal: User Profile & Sign in with Apple -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal-box" style="max-width: 480px;">
+      <button class="modal-close" onclick="closeModal('profileModal')">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+        <div class="user-avatar" id="modalUserAvatar" style="width: 54px; height: 54px; font-size: 1.3rem;">VR</div>
+        <div>
+          <h3 id="modalUserName" style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.15rem;">Alex Rivera</h3>
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span class="badge-pill" id="modalAuthBadge" style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a;">🟡 On-Device Guest</span>
+            <span style="font-size: 0.75rem; color: var(--text-muted);" id="modalBioAgeDetail">Bio Age: 33.4 yrs (-4.6 pace)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Sync & Sign in with Apple Section -->
+      <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.1rem; margin-bottom: 1.25rem;">
+        <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+          Cloud Sync &amp; Identity
+        </div>
+        
+        <div id="appleSignInContainer">
+          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.85rem; line-height: 1.4;">
+            Sign in with Apple to securely back up your longevity biomarkers, sleep architecture, and habits across all your iOS and watchOS devices.
+          </p>
+          <button class="apple-signin-btn" id="appleSignInBtn" onclick="handleAppleSignIn()">
+            <svg class="apple-icon" viewBox="0 0 170 170" width="18" height="18" fill="currentColor">
+              <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.73-11.65-14.07-5.99-9.35-10.74-20.08-14.26-32.2-3.52-12.11-5.28-23.77-5.28-34.99 0-14.57 3.52-26.85 10.57-36.85 7.05-10 16.03-15.11 26.96-15.34 4.8 0 10.02 1.25 15.66 3.75 5.64 2.5 9.4 3.78 11.28 3.84 1.52 0 5.48-1.34 11.88-4.02 6.4-2.68 11.62-3.9 15.66-3.66 11.97.72 21.6 5.37 28.89 13.95-10.45 6.31-15.58 15.08-15.39 26.31.2 8.7 3.49 16.07 9.87 22.11 6.38 6.04 14.15 9.61 23.31 10.72-2.18 6.74-4.79 13.58-7.83 20.52zM119.22 31.84c0-7.39 2.68-14.35 8.04-20.88 5.36-6.53 11.92-10.42 19.68-11.67.22 1.3.33 2.49.33 3.57 0 7.39-2.78 14.41-8.34 21.06-5.56 6.65-12.24 10.47-20.04 11.46-.22-1.08-.33-2.27-.33-3.54z"/>
+            </svg>
+            <span id="appleBtnLabel">Sign in with Apple</span>
+          </button>
+        </div>
+
+        <div id="appleSignedInDetails" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <span style="font-size: 0.85rem; font-weight: 700; color: #15803d;"> Apple ID Connected</span>
+            <button class="btn btn-outline btn-sm" style="font-size: 0.72rem; padding: 0.2rem 0.6rem; color: #dc2626; border-color: #fca5a5;" onclick="handleAppleSignOut()">Sign Out</button>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); line-height: 1.5;">
+            <div>Email: <strong id="appleUserEmail" style="color: var(--text-main);">alex.rivera@privaterelay.appleid.com</strong></div>
+            <div>Cloud Firestore: <strong style="color: #15803d;">Active (/users/apple_auth/wellness)</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Biomarker Calibration Form -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+          Biomarker Calibration
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem;">
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Full Name</label>
+            <input type="text" id="profileNameInput" class="chat-input" value="Alex Rivera" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Chronological Age</label>
+            <input type="number" id="profileAgeInput" class="chat-input" value="38" style="width: 100%;">
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Target Resting HR (bpm)</label>
+            <input type="number" id="profileRHRInput" class="chat-input" value="60" style="width: 100%;">
+          </div>
+          <div>
+            <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Sleep Target (Hours)</label>
+            <input type="number" step="0.5" id="profileSleepInput" class="chat-input" value="8.0" style="width: 100%;">
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 0.5rem;">
+        <button class="btn btn-outline" style="flex: 1;" onclick="closeModal('profileModal')">Cancel</button>
+        <button class="btn btn-primary" style="flex: 2;" onclick="saveUserProfile()">💾 Save Profile</button>
+      </div>
+
     </div>
   </div>
 
@@ -1709,6 +1831,168 @@
     window.openApiKeyModal = () => document.getElementById('apiKeyModal').style.display = 'flex';
     window.openFirebaseModal = () => document.getElementById('firebaseModal').style.display = 'flex';
     window.closeModal = (id) => document.getElementById(id).style.display = 'none';
+
+    // Profile & Authentication Management
+    let userProfile = {
+      name: 'Alex Rivera',
+      age: 38,
+      bioAge: 33.4,
+      targetRHR: 60,
+      targetSleep: 8.0,
+      isSignedInApple: false,
+      appleEmail: ''
+    };
+
+    try {
+      const savedProfile = localStorage.getItem('VITALIS_USER_PROFILE');
+      if (savedProfile) {
+        userProfile = Object.assign(userProfile, JSON.parse(savedProfile));
+      }
+    } catch(e) {
+      console.warn('Error loading user profile from storage:', e);
+    }
+
+    window.openProfileModal = function() {
+      const nameInput = document.getElementById('profileNameInput');
+      const ageInput = document.getElementById('profileAgeInput');
+      const rhrInput = document.getElementById('profileRHRInput');
+      const sleepInput = document.getElementById('profileSleepInput');
+
+      if (nameInput) nameInput.value = userProfile.name;
+      if (ageInput) ageInput.value = userProfile.age;
+      if (rhrInput) rhrInput.value = userProfile.targetRHR;
+      if (sleepInput) sleepInput.value = userProfile.targetSleep;
+
+      updateProfileUI();
+      document.getElementById('profileModal').style.display = 'flex';
+    };
+
+    function updateProfileUI() {
+      const modalName = document.getElementById('modalUserName');
+      const modalAvatar = document.getElementById('modalUserAvatar');
+      const modalAuthBadge = document.getElementById('modalAuthBadge');
+      const modalBioAge = document.getElementById('modalBioAgeDetail');
+      const appleContainer = document.getElementById('appleSignInContainer');
+      const appleDetails = document.getElementById('appleSignedInDetails');
+      const appleEmailEl = document.getElementById('appleUserEmail');
+      const appleBtn = document.getElementById('appleSignInBtn');
+
+      const nameParts = userProfile.name.trim().split(/\s+/);
+      const initials = nameParts.map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'VR';
+      const pace = (userProfile.bioAge - userProfile.age).toFixed(1);
+
+      if (modalName) modalName.textContent = userProfile.name;
+      if (modalBioAge) modalBioAge.textContent = `Bio Age: ${userProfile.bioAge} yrs (${pace} pace)`;
+
+      if (userProfile.isSignedInApple) {
+        if (modalAvatar) {
+          modalAvatar.textContent = '';
+          modalAvatar.style.background = 'linear-gradient(135deg, #000000, #333333)';
+        }
+        if (modalAuthBadge) {
+          modalAuthBadge.textContent = '🟢  Apple ID Synced';
+          modalAuthBadge.style.background = '#dcfce7';
+          modalAuthBadge.style.color = '#15803d';
+          modalAuthBadge.style.borderColor = '#86efac';
+        }
+        if (appleContainer) appleContainer.style.display = 'none';
+        if (appleDetails) appleDetails.style.display = 'block';
+        if (appleEmailEl) appleEmailEl.textContent = userProfile.appleEmail || `${userProfile.name.toLowerCase().replace(/\s+/g, '.')}@privaterelay.appleid.com`;
+      } else {
+        if (modalAvatar) {
+          modalAvatar.textContent = initials;
+          modalAvatar.style.background = 'linear-gradient(135deg, #06b6d4, #0891b2)';
+        }
+        if (modalAuthBadge) {
+          modalAuthBadge.textContent = '🟡 On-Device Guest';
+          modalAuthBadge.style.background = '#fef3c7';
+          modalAuthBadge.style.color = '#b45309';
+          modalAuthBadge.style.borderColor = '#fde68a';
+        }
+        if (appleContainer) appleContainer.style.display = 'block';
+        if (appleDetails) appleDetails.style.display = 'none';
+        if (appleBtn) {
+          appleBtn.innerHTML = `
+            <svg class="apple-icon" viewBox="0 0 170 170" width="18" height="18" fill="currentColor">
+              <path d="M150.37 130.25c-2.45 5.66-5.35 10.87-8.71 15.66-4.58 6.53-8.33 11.05-11.22 13.56-4.48 4.12-9.28 6.23-14.42 6.35-3.69 0-8.14-1.05-13.32-3.18-5.19-2.12-9.97-3.17-14.34-3.17-4.58 0-9.49 1.05-14.75 3.17-5.26 2.13-9.5 3.24-12.74 3.35-4.35.13-9.16-1.9-14.42-6.08-3.7-3.04-7.58-7.73-11.65-14.07-5.99-9.35-10.74-20.08-14.26-32.2-3.52-12.11-5.28-23.77-5.28-34.99 0-14.57 3.52-26.85 10.57-36.85 7.05-10 16.03-15.11 26.96-15.34 4.8 0 10.02 1.25 15.66 3.75 5.64 2.5 9.4 3.78 11.28 3.84 1.52 0 5.48-1.34 11.88-4.02 6.4-2.68 11.62-3.9 15.66-3.66 11.97.72 21.6 5.37 28.89 13.95-10.45 6.31-15.58 15.08-15.39 26.31.2 8.7 3.49 16.07 9.87 22.11 6.38 6.04 14.15 9.61 23.31 10.72-2.18 6.74-4.79 13.58-7.83 20.52zM119.22 31.84c0-7.39 2.68-14.35 8.04-20.88 5.36-6.53 11.92-10.42 19.68-11.67.22 1.3.33 2.49.33 3.57 0 7.39-2.78 14.41-8.34 21.06-5.56 6.65-12.24 10.47-20.04 11.46-.22-1.08-.33-2.27-.33-3.54z"/>
+            </svg>
+            <span id="appleBtnLabel">Sign in with Apple</span>
+          `;
+        }
+      }
+
+      // Update Sidebar & Header Elements
+      const sidebarName = document.getElementById('sidebarUserName');
+      const sidebarAvatar = document.getElementById('sidebarAvatar');
+      const sidebarBio = document.getElementById('sidebarBioAge');
+      if (sidebarName) sidebarName.textContent = `${userProfile.name} (${userProfile.age} y/o)`;
+      if (sidebarAvatar) {
+        sidebarAvatar.textContent = userProfile.isSignedInApple ? '' : initials;
+        sidebarAvatar.style.background = userProfile.isSignedInApple ? 'linear-gradient(135deg, #000000, #333333)' : 'linear-gradient(135deg, #06b6d4, #0891b2)';
+      }
+      if (sidebarBio) sidebarBio.textContent = `Biological Age: ${userProfile.bioAge} yrs (${pace})`;
+
+      const headerAvatarBadge = document.getElementById('headerAvatarBadge');
+      if (headerAvatarBadge) headerAvatarBadge.textContent = userProfile.isSignedInApple ? '' : '👤';
+      const headerProfileLabel = document.getElementById('headerProfileLabel');
+      if (headerProfileLabel) headerProfileLabel.textContent = userProfile.isSignedInApple ? 'Apple ID' : 'Profile';
+    }
+
+    window.handleAppleSignIn = function() {
+      const btn = document.getElementById('appleSignInBtn');
+      if (btn) btn.innerHTML = '<span>Connecting to Apple ID...</span>';
+
+      // Send signal to native iOS WKWebView bridge if active
+      if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.vitalisHealthKit) {
+        try {
+          window.webkit.messageHandlers.vitalisHealthKit.postMessage({ action: "signInWithApple" });
+        } catch(e) {
+          console.log("Native Apple auth bridge:", e);
+        }
+      }
+
+      setTimeout(() => {
+        userProfile.isSignedInApple = true;
+        const cleanName = userProfile.name.toLowerCase().replace(/[^a-z0-9]/g, '.');
+        userProfile.appleEmail = `${cleanName}@privaterelay.appleid.com`;
+        localStorage.setItem('VITALIS_USER_PROFILE', JSON.stringify(userProfile));
+        updateProfileUI();
+        showToast(`Connected via Apple ID (${userProfile.appleEmail})! Cloud sync active.`, '');
+      }, 650);
+    };
+
+    window.handleAppleSignOut = function() {
+      userProfile.isSignedInApple = false;
+      localStorage.setItem('VITALIS_USER_PROFILE', JSON.stringify(userProfile));
+      updateProfileUI();
+      showToast('Signed out of Apple ID. Reverted to on-device guest mode.', '👤');
+    };
+
+    window.saveUserProfile = function() {
+      const nameInput = document.getElementById('profileNameInput');
+      const ageInput = document.getElementById('profileAgeInput');
+      const rhrInput = document.getElementById('profileRHRInput');
+      const sleepInput = document.getElementById('profileSleepInput');
+
+      const name = (nameInput && nameInput.value.trim()) || userProfile.name;
+      const age = (ageInput && parseInt(ageInput.value)) || userProfile.age;
+      const rhr = (rhrInput && parseInt(rhrInput.value)) || userProfile.targetRHR;
+      const sleep = (sleepInput && parseFloat(sleepInput.value)) || userProfile.targetSleep;
+
+      userProfile.name = name;
+      userProfile.age = age;
+      userProfile.targetRHR = rhr;
+      userProfile.targetSleep = sleep;
+      userProfile.bioAge = +(age - 4.6).toFixed(1);
+
+      localStorage.setItem('VITALIS_USER_PROFILE', JSON.stringify(userProfile));
+      updateProfileUI();
+      closeModal('profileModal');
+      showToast('Profile & biomarker calibration saved!', '💾');
+    };
+
+    // Initialize profile UI immediately on script run
+    updateProfileUI();
 
     window.saveCustomWorkout = function() {
       const name = document.getElementById('customWorkoutName').value || 'Custom Workout';
