@@ -3,7 +3,7 @@
  * Provides offline resilience, shell caching, and push notifications
  */
 
-const CACHE_NAME = 'vitalis-longevity-v3';
+const CACHE_NAME = 'vitalis-longevity-v4';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
