@@ -214,6 +214,39 @@
       font-size: 0.78rem;
     }
 
+    /* Recipe Architect Styles */
+    .recipe-filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.28rem 0.75rem;
+      border-radius: 99px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+      outline: none;
+    }
+    .recipe-filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .recipe-filter-btn.active {
+      background: rgba(6, 182, 212, 0.16);
+      border-color: rgba(6, 182, 212, 0.5);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.2);
+    }
+    @keyframes recipeFadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .recipe-animate {
+      animation: recipeFadeIn 0.3s ease-out;
+    }
+
     /* Main Container Layout */
     .app-container {
       max-width: 1440px;
@@ -1142,36 +1175,36 @@
           </div>
 
           <!-- Calorie and Fasting Row -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.25rem;">
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
             
-            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.1rem;">
-              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Caloric Budget</div>
-              <div style="font-size: 1.6rem; font-weight: 800; color: #0f172a; font-family: 'Space Grotesk', sans-serif; margin: 0.25rem 0;" id="calBudgetText">1,750 / 2,100 kcal</div>
-              <div style="font-size: 0.78rem; color: #15803d; font-weight: 600;">350 kcal remaining for dinner</div>
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.1rem;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">Caloric Budget</div>
+              <div style="font-size: 1.6rem; font-weight: 800; color: var(--text-main); font-family: 'Space Grotesk', sans-serif; margin: 0.25rem 0;" id="calBudgetText">1,750 / 2,100 kcal</div>
+              <div style="font-size: 0.78rem; color: #10b981; font-weight: 600;" id="calRemainingText">350 kcal remaining for dinner</div>
               <div style="margin-top: 0.75rem; display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.78rem;">
-                <div style="display: flex; justify-content: space-between;"><span>Protein (1.6g/kg):</span> <strong>138g / 160g</strong></div>
-                <div style="display: flex; justify-content: space-between;"><span>Carbohydrates (Fiber Rich):</span> <strong>175g / 210g</strong></div>
-                <div style="display: flex; justify-content: space-between;"><span>Healthy Fats (MUFA/Omega-3):</span> <strong>54g / 65g</strong></div>
+                <div style="display: flex; justify-content: space-between;"><span>Protein (1.6g/kg):</span> <strong id="proteinBudgetText">138g / 160g</strong></div>
+                <div style="display: flex; justify-content: space-between;"><span>Carbohydrates (Fiber Rich):</span> <strong id="carbsBudgetText">175g / 210g</strong></div>
+                <div style="display: flex; justify-content: space-between;"><span>Healthy Fats (MUFA/Omega-3):</span> <strong id="fatBudgetText">54g / 65g</strong></div>
               </div>
             </div>
 
-            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.1rem; display: flex; flex-direction: column; justify-content: space-between;">
+            <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.1rem; display: flex; flex-direction: column; justify-content: space-between;">
               <div>
-                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">16:8 Circadian Fasting Clock</div>
-                <div style="font-size: 1.45rem; font-weight: 800; color: #0891b2; font-family: 'Space Grotesk', sans-serif; margin: 0.25rem 0;" id="fastingTimerText">14h 25m Fasted</div>
-                <div style="font-size: 0.78rem; color: var(--text-muted);">Autophagy cellular turnover active. Window ends at 20:00.</div>
+                <div style="font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em;">16:8 Circadian Fasting Clock</div>
+                <div style="font-size: 1.45rem; font-weight: 800; color: var(--accent-cyan); font-family: 'Space Grotesk', sans-serif; margin: 0.25rem 0;" id="fastingTimerText">14h 25m Fasted</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted);">Autophagy cellular turnover active. Eating window ends at 20:00.</div>
               </div>
-              <button class="btn btn-outline btn-sm" id="toggleFastBtn" onclick="toggleFastingWindow()" style="width: 100%; margin-top: 0.5rem;">⏱️ End Fasting Window</button>
+              <button class="btn btn-outline btn-sm" id="toggleFastBtn" onclick="toggleFastingWindow()" style="width: 100%; margin-top: 0.75rem;">⏱️ End Fasting Window</button>
             </div>
 
           </div>
 
           <!-- Hydration Tracker -->
-          <div style="background: #ecfeff; border: 1px solid #a5f3fc; border-radius: var(--radius-md); padding: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between;">
+          <div style="background: rgba(6, 182, 212, 0.08); border: 1px solid rgba(6, 182, 212, 0.25); border-radius: var(--radius-md); padding: 1.1rem; margin-bottom: 1.25rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
             <div>
-              <div style="font-size: 0.8rem; font-weight: 700; color: #0e7490; text-transform: uppercase;">Smart Hydration Counter</div>
-              <div style="font-size: 1.4rem; font-weight: 800; color: #0891b2;" id="waterLitersText">2.4 Liters / 3.0L Target</div>
-              <div style="font-size: 0.75rem; color: #0891b2;">Optimal cellular hydration with sodium/potassium electrolyte balance.</div>
+              <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.05em;">Smart Hydration Counter</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #fff;" id="waterLitersText">2.4 Liters / 3.0L Target</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">Optimal cellular hydration with sodium/potassium electrolyte balance.</div>
             </div>
             <div style="display: flex; gap: 0.5rem;">
               <button class="btn btn-primary btn-sm" onclick="addWater(0.25)">+250ml</button>
@@ -1180,15 +1213,88 @@
             </div>
           </div>
 
-          <!-- AI Nutrition Guidance -->
-          <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-              <strong style="font-size: 0.85rem;">🌱 Gemini Longevity Dinner Architect</strong>
-              <button class="btn btn-outline btn-sm" onclick="askCoach('Suggest a low-glycemic anti-inflammatory dinner based on my remaining 350 kcal and 22g protein')">✨ Get Recipe</button>
+          <!-- Dynamic Longevity Recipe Architect -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.65rem;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+                  <span style="font-size: 1.2rem;">🌱</span>
+                  <strong style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);">Gemini Longevity Meal Architect</strong>
+                  <span class="badge-pill" id="recipeCategoryBadge" style="background: rgba(6,182,212,0.15); color: var(--accent-cyan); font-size: 0.68rem; font-weight: 700; border: 1px solid rgba(6,182,212,0.3); border-radius: 99px; padding: 2px 8px;">Pescatarian • Omega-3</span>
+                </div>
+                <div style="font-size: 0.76rem; color: var(--text-muted); margin-top: 3px;">
+                  Anti-inflammatory meals calibrated for your remaining <strong style="color: var(--accent-emerald);" id="recipeRemainingKcal">350 kcal</strong> budget
+                </div>
+              </div>
+
+              <!-- Action Controls -->
+              <div style="display: flex; gap: 0.4rem; flex-wrap: wrap;">
+                <button class="btn btn-outline btn-sm" onclick="cycleRecipe()" style="font-size: 0.76rem; padding: 0.35rem 0.75rem;" title="Cycle to next evidence-based longevity meal">
+                  🎲 Next Recipe
+                </button>
+                <button class="btn btn-primary btn-sm" onclick="requestNewAiRecipe()" style="font-size: 0.76rem; padding: 0.35rem 0.75rem;" title="Request a new meal from Gemini Longevity AI">
+                  ✨ Request New Meal
+                </button>
+              </div>
             </div>
-            <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.45;">
-              Recommended: Wild Alaskan Salmon with roasted asparagus, steamed purple sweet potato, and organic extra virgin olive oil. (High Polyphenols, EPA/DHA Omega-3s, and zero refined seed oils).
-            </p>
+
+            <!-- Category Filter Pills -->
+            <div style="display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.5rem; margin-bottom: 0.85rem; border-bottom: 1px solid var(--border);">
+              <button class="recipe-filter-btn active" data-filter="all" onclick="filterRecipes('all')">All Longevity</button>
+              <button class="recipe-filter-btn" data-filter="high-protein" onclick="filterRecipes('high-protein')">💪 High Protein</button>
+              <button class="recipe-filter-btn" data-filter="pescatarian" onclick="filterRecipes('pescatarian')">🐟 Pescatarian</button>
+              <button class="recipe-filter-btn" data-filter="plant-based" onclick="filterRecipes('plant-based')">🌿 Plant-Based</button>
+              <button class="recipe-filter-btn" data-filter="keto" onclick="filterRecipes('keto')">🥑 Keto / Low-Carb</button>
+            </div>
+
+            <!-- Active Recipe Box -->
+            <div id="recipeDisplayBox" class="recipe-animate" style="background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 1rem;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.65rem; flex-wrap: wrap; gap: 0.5rem;">
+                <h4 id="recipeTitle" style="font-size: 1.05rem; font-weight: 800; color: #fff; font-family: 'Space Grotesk', sans-serif;">Wild Alaskan King Salmon &amp; Asparagus</h4>
+                <span id="recipeTime" style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">⏱️ 22 mins prep</span>
+              </div>
+
+              <!-- Macros 4-Grid -->
+              <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem; margin-bottom: 0.75rem; text-align: center;">
+                <div style="background: rgba(6,182,212,0.08); border: 1px solid rgba(6,182,212,0.2); border-radius: 6px; padding: 0.45rem 0.2rem;">
+                  <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Calories</div>
+                  <div id="recipeCalories" style="font-size: 0.95rem; font-weight: 800; color: var(--accent-cyan);">340 kcal</div>
+                </div>
+                <div style="background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); border-radius: 6px; padding: 0.45rem 0.2rem;">
+                  <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Protein</div>
+                  <div id="recipeProtein" style="font-size: 0.95rem; font-weight: 800; color: var(--accent-emerald);">36g</div>
+                </div>
+                <div style="background: rgba(139,92,246,0.08); border: 1px solid rgba(139,92,246,0.2); border-radius: 6px; padding: 0.45rem 0.2rem;">
+                  <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Carbs</div>
+                  <div id="recipeCarbs" style="font-size: 0.95rem; font-weight: 800; color: #c084fc;">14g</div>
+                </div>
+                <div style="background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 6px; padding: 0.45rem 0.2rem;">
+                  <div style="font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase;">Healthy Fat</div>
+                  <div id="recipeFat" style="font-size: 0.95rem; font-weight: 800; color: #fbbf24;">16g</div>
+                </div>
+              </div>
+
+              <!-- Longevity Bio-actives -->
+              <div style="margin-bottom: 0.65rem; font-size: 0.78rem; line-height: 1.45;">
+                <span style="color: var(--accent-cyan); font-weight: 700;">🧬 Key Bio-Actives:</span> 
+                <span id="recipeBioactives" style="color: var(--text-main);">EPA/DHA Omega-3s (2.6g), Astaxanthin, Sulforaphane, Extra Virgin Olive Oil Polyphenols</span>
+              </div>
+
+              <!-- Description & Ingredients -->
+              <p id="recipeDescription" style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 0.85rem;">
+                Wild-caught king salmon seared in cold-pressed avocado oil, served over steamed purple sweet potato mash and roasted asparagus spears drizzled with unfiltered polyphenol-rich olive oil. Zero inflammatory seed oils.
+              </p>
+
+              <!-- Recipe Quick Action Buttons -->
+              <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <button class="btn btn-primary btn-sm" id="logRecipeBtn" onclick="logCurrentRecipe()" style="font-size: 0.76rem; padding: 0.35rem 0.85rem;">
+                  ⚡ Log This Meal (+36g Protein)
+                </button>
+                <button class="btn btn-outline btn-sm" onclick="askCoachAboutCurrentRecipe()" style="font-size: 0.76rem; padding: 0.35rem 0.85rem;">
+                  💬 Ask AI Coach Full Recipe &amp; Prep
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1736,6 +1842,208 @@
     let currentPillar = 'overview';
     let geminiApiKey = localStorage.getItem('GEMINI_API_KEY') || '';
 
+    // Nutrition & Recipe Architecture
+    let caloriesConsumed = 1750;
+    let targetCalories = 2100;
+    let proteinConsumed = 138;
+    let targetProtein = 160;
+    let currentRecipeIndex = 0;
+    let activeRecipeFilter = 'all';
+
+    const LONGEVITY_RECIPES = [
+      {
+        id: 1,
+        title: "Wild Alaskan King Salmon & Asparagus",
+        category: "pescatarian",
+        categoryLabel: "Pescatarian • Omega-3",
+        time: "22 mins prep",
+        calories: 340,
+        protein: 36,
+        carbs: 14,
+        fat: 16,
+        bioactives: "EPA/DHA Omega-3s (2.6g), Astaxanthin, Sulforaphane, Extra Virgin Olive Oil Polyphenols",
+        description: "Wild-caught king salmon seared in cold-pressed avocado oil, served over steamed purple sweet potato mash and roasted asparagus spears drizzled with unfiltered polyphenol-rich olive oil. Zero inflammatory seed oils.",
+        instructions: "Season 200g wild salmon with sea salt and rosemary. Pan-sear in avocado oil for 4 mins per side. Roast asparagus with garlic and olive oil at 400°F (200°C) for 10 mins. Serve with 80g steamed purple sweet potato."
+      },
+      {
+        id: 2,
+        title: "Pasture-Raised Lemon Herb Chicken & Quinoa",
+        category: "high-protein",
+        categoryLabel: "High Protein • Anti-Inflammatory",
+        time: "25 mins prep",
+        calories: 360,
+        protein: 38,
+        carbs: 22,
+        fat: 12,
+        bioactives: "Carnosine, Bioavailable Zinc, Choline, Rosmarinic Acid",
+        description: "Marinated pasture-raised chicken breast sliced over warm tri-color quinoa, wilted baby spinach, and roasted cherry tomatoes with fresh lemon-oregano vinaigrette.",
+        instructions: "Grill 180g chicken breast marinated in fresh lemon juice and oregano. Serve over 1/2 cup cooked quinoa tossed with wilted organic spinach, 6 roasted cherry tomatoes, and 1 tsp cold-pressed olive oil."
+      },
+      {
+        id: 3,
+        title: "Mediterranean Sardine & Charred Broccolini",
+        category: "pescatarian",
+        categoryLabel: "Pescatarian • Mitochondrial",
+        time: "18 mins prep",
+        calories: 310,
+        protein: 29,
+        carbs: 11,
+        fat: 17,
+        bioactives: "CoQ10, Bioavailable Calcium, Glucosinolates, Hydroxytyrosol",
+        description: "Pan-crisped Mediterranean sardines with minced garlic, fresh parsley, capers, and toasted pine nuts over charred broccolini with a lemon-herb tahini drizzle.",
+        instructions: "Sauté 150g fresh sardines with garlic in 1 tbsp olive oil for 3 mins. Char broccolini in a hot skillet until tender-crisp. Garnish with parsley, capers, and 1 tbsp lemon-tahini."
+      },
+      {
+        id: 4,
+        title: "Organic Tempeh & Shiitake Mushroom Stir-Fry",
+        category: "plant-based",
+        categoryLabel: "Plant-Based • Cellular Autophagy",
+        time: "20 mins prep",
+        calories: 320,
+        protein: 27,
+        carbs: 18,
+        fat: 15,
+        bioactives: "Ergothioneine, Beta-Glucans, Spermidine, Prebiotic Fiber",
+        description: "Fermented organic tempeh cubes sautéed with sliced fresh shiitake mushrooms, baby bok choy, grated ginger, and coconut aminos over cauliflower rice.",
+        instructions: "Cube 150g organic tempeh and brown with 100g sliced shiitake mushrooms. Add baby bok choy, garlic, and fresh grated ginger. Splash with 1 tbsp coconut aminos and serve over riced cauliflower."
+      },
+      {
+        id: 5,
+        title: "Grass-Fed Flank Steak & Avocado Chimichurri",
+        category: "keto",
+        categoryLabel: "Keto/Low-Carb • Sarcopenia Defense",
+        time: "20 mins prep",
+        calories: 350,
+        protein: 35,
+        carbs: 6,
+        fat: 21,
+        bioactives: "L-Carnitine, Creatine, Heme Iron, Oleic Acid",
+        description: "Thinly sliced grilled grass-fed flank steak topped with hand-chopped avocado-parsley chimichurri, accompanied by charred zucchini rounds and baby bell peppers.",
+        instructions: "Sear 150g grass-fed flank steak to medium-rare (130°F / 54°C). Rest 5 mins and slice against the grain. Top with fresh chimichurri (parsley, red wine vinegar, garlic, olive oil, diced 1/4 avocado)."
+      },
+      {
+        id: 6,
+        title: "Olive Oil Poached Halibut & French Puy Lentils",
+        category: "pescatarian",
+        categoryLabel: "Mediterranean • Metabolic Health",
+        time: "28 mins prep",
+        calories: 330,
+        protein: 34,
+        carbs: 24,
+        fat: 10,
+        bioactives: "Bioactive Peptides, Selenium, Soluble Prebiotic Fiber",
+        description: "Gentle olive-oil poached Pacific halibut fillet served over warm braised French Puy green lentils, celery mirepoix, fresh thyme, and pomegranate arils.",
+        instructions: "Slow-poach 160g wild halibut at 160°F (70°C) in extra virgin olive oil with lemon peel and thyme for 12 mins. Serve over 1/2 cup cooked French green lentils with diced carrots and celery."
+      }
+    ];
+
+    function getFilteredRecipes() {
+      if (activeRecipeFilter === 'all') return LONGEVITY_RECIPES;
+      return LONGEVITY_RECIPES.filter(r => r.category === activeRecipeFilter);
+    }
+
+    function renderRecipeCard(recipe) {
+      if (!recipe) return;
+      const box = document.getElementById('recipeDisplayBox');
+      if (box) {
+        box.classList.remove('recipe-animate');
+        void box.offsetWidth;
+        box.classList.add('recipe-animate');
+      }
+
+      const catBadge = document.getElementById('recipeCategoryBadge');
+      const title = document.getElementById('recipeTitle');
+      const time = document.getElementById('recipeTime');
+      const cal = document.getElementById('recipeCalories');
+      const prot = document.getElementById('recipeProtein');
+      const carbs = document.getElementById('recipeCarbs');
+      const fat = document.getElementById('recipeFat');
+      const bio = document.getElementById('recipeBioactives');
+      const desc = document.getElementById('recipeDescription');
+      const logBtn = document.getElementById('logRecipeBtn');
+
+      if (catBadge) catBadge.textContent = recipe.categoryLabel;
+      if (title) title.textContent = recipe.title;
+      if (time) time.textContent = `⏱️ ${recipe.time}`;
+      if (cal) cal.textContent = `${recipe.calories} kcal`;
+      if (prot) prot.textContent = `${recipe.protein}g`;
+      if (carbs) carbs.textContent = `${recipe.carbs}g`;
+      if (fat) fat.textContent = `${recipe.fat}g`;
+      if (bio) bio.textContent = recipe.bioactives;
+      if (desc) desc.textContent = recipe.description;
+      if (logBtn) logBtn.textContent = `⚡ Log This Meal (+${recipe.protein}g Protein)`;
+    }
+
+    window.cycleRecipe = function() {
+      const list = getFilteredRecipes();
+      if (list.length === 0) return;
+      currentRecipeIndex = (currentRecipeIndex + 1) % list.length;
+      const rec = list[currentRecipeIndex];
+      renderRecipeCard(rec);
+      showToast(`Loaded: ${rec.title} (${rec.calories} kcal)`, '🌱');
+    };
+
+    window.filterRecipes = function(category) {
+      activeRecipeFilter = category;
+      currentRecipeIndex = 0;
+      document.querySelectorAll('.recipe-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === category);
+      });
+      const list = getFilteredRecipes();
+      if (list.length > 0) {
+        renderRecipeCard(list[0]);
+        showToast(`Filtered: ${category.toUpperCase()} (${list.length} recipes)`, '🥗');
+      }
+    };
+
+    window.requestNewAiRecipe = function() {
+      window.cycleRecipe();
+      const list = getFilteredRecipes();
+      const current = list[currentRecipeIndex] || LONGEVITY_RECIPES[0];
+      askCoach(`Recommend a fresh anti-inflammatory longevity dinner like "${current.title}" (${current.calories} kcal, ${current.protein}g protein) with prep instructions`);
+    };
+
+    window.logCurrentRecipe = function() {
+      const list = getFilteredRecipes();
+      const rec = list[currentRecipeIndex] || LONGEVITY_RECIPES[0];
+      logNutritionIntake(rec.calories, rec.protein, rec.title);
+    };
+
+    window.askCoachAboutCurrentRecipe = function() {
+      const list = getFilteredRecipes();
+      const rec = list[currentRecipeIndex] || LONGEVITY_RECIPES[0];
+      askCoach(`Detail the clinical longevity mechanism, cellular pathways, and prep steps for: ${rec.title}`);
+    };
+
+    function logNutritionIntake(cal, protein, mealTitle) {
+      caloriesConsumed += cal;
+      proteinConsumed += protein;
+      updateNutritionDisplay();
+      showToast(`Logged ${mealTitle} (+${cal} kcal, +${protein}g protein)!`, '🥗');
+      updateLongevityScore();
+    }
+
+    function updateNutritionDisplay() {
+      const calEl = document.getElementById('calBudgetText');
+      const remEl = document.getElementById('calRemainingText');
+      const protEl = document.getElementById('proteinBudgetText');
+      const recipeRem = document.getElementById('recipeRemainingKcal');
+      const remain = Math.max(0, targetCalories - caloriesConsumed);
+
+      if (calEl) calEl.textContent = `${caloriesConsumed.toLocaleString()} / ${targetCalories.toLocaleString()} kcal`;
+      if (remEl) {
+        if (remain > 0) {
+          remEl.textContent = `${remain} kcal remaining for dinner`;
+          remEl.style.color = '#10b981';
+        } else {
+          remEl.textContent = `Daily caloric goal reached (${caloriesConsumed} kcal)`;
+          remEl.style.color = '#06b6d4';
+        }
+      }
+      if (protEl) protEl.textContent = `${proteinConsumed}g / ${targetProtein}g`;
+      if (recipeRem) recipeRem.textContent = `${remain} kcal`;
+    }
+
     // Switch Pillar Views
     window.switchPillar = function(pillarId) {
       currentPillar = pillarId;
@@ -2138,9 +2446,10 @@
 
     window.saveCustomMeal = function() {
       const title = document.getElementById('mealTitleInput').value || 'Nutritious Meal';
-      const cal = document.getElementById('mealCalInput').value || '450';
+      const cal = parseInt(document.getElementById('mealCalInput').value) || 450;
+      const protein = parseInt(document.getElementById('mealProteinInput').value) || 35;
+      logNutritionIntake(cal, protein, title);
       closeModal('mealModal');
-      showToast(`Logged ${title} (${cal} kcal)!`, '🥗');
     };
 
     window.saveNewMedication = function() {
@@ -2250,7 +2559,7 @@
             body: JSON.stringify({
               contents: [{
                 parts: [{
-                  text: `You are the Vitaliq AI Longevity Coach. Patient has score ${longevityScore}/100, ${stepsCount} steps, ${zone2Mins}m Zone-2 cardio, 7h 35m sleep (89% efficiency). Answer concisely with evidence-based longevity coaching: ${query}`
+                  text: `You are the Vitaliq AI Longevity Coach. Patient has score ${longevityScore}/100, ${stepsCount} steps, ${zone2Mins}m Zone-2 cardio, 7h 35m sleep (89% efficiency), and ${Math.max(0, targetCalories - caloriesConsumed)} kcal remaining in daily caloric budget. Recommend a distinct, creative, evidence-based longevity recipe with exact grams, macros (calories, protein, carbs, healthy fats), and longevity cellular mechanisms (mTOR/AMPK/autophagy). User query: ${query}`
                 }]
               }]
             })
@@ -2271,11 +2580,37 @@
         let reply = "";
         const qLower = query.toLowerCase();
         if (qLower.includes('score') || qLower.includes('breakdown')) {
-          reply = `<strong>Vitaliq Longevity Score (${longevityScore}/100) Analysis:</strong><br>• <strong>Fitness (93/100):</strong> ${stepsCount} steps + ${zone2Mins}m Zone-2 base.<br>• <strong>Sleep (92/100):</strong> 7h 35m with 1h 48m Deep (24%) and 1h 55m REM.<br>• <strong>Nutrition (88/100):</strong> 138g protein logged, 16:8 circadian fast active.<br>• <strong>Medications (100/100):</strong> Flawless adherence on Metformin & D3/K2.<br>• <strong>Habits (90/100):</strong> 5/6 streaks logged today.`;
+          reply = `<strong>Vitaliq Longevity Score (${longevityScore}/100) Analysis:</strong><br>• <strong>Fitness (93/100):</strong> ${stepsCount} steps + ${zone2Mins}m Zone-2 base.<br>• <strong>Sleep (92/100):</strong> 7h 35m with 1h 48m Deep (24%) and 1h 55m REM.<br>• <strong>Nutrition (88/100):</strong> ${proteinConsumed}g protein logged, 16:8 circadian fast active.<br>• <strong>Medications (100/100):</strong> Flawless adherence on Metformin & D3/K2.<br>• <strong>Habits (90/100):</strong> 5/6 streaks logged today.`;
         } else if (qLower.includes('zone-2') || qLower.includes('workout') || qLower.includes('fitness')) {
           reply = `<strong>Zone-2 Mitochondrial Prescription:</strong> Aim for 45 minutes maintaining a heart rate of <strong>132–140 bpm</strong>. This maximizes fat oxidation and lactate clearance without imposing autonomic stress, keeping your HRV elevated for tonight's recovery.`;
-        } else if (qLower.includes('dinner') || qLower.includes('meal') || qLower.includes('recipe') || qLower.includes('nutrition')) {
-          reply = `<strong>Anti-Inflammatory Longevity Dinner:</strong> Wild Alaskan Salmon (220g) paired with steamed broccoli, purple sweet potato, and 1 tbsp extra virgin olive oil. This supplies 38g bioavailable protein, 2.4g EPA/DHA Omega-3s, and zero refined seed oils.`;
+        } else if (qLower.includes('dinner') || qLower.includes('meal') || qLower.includes('recipe') || qLower.includes('nutrition') || qLower.includes('eat') || qLower.includes('food')) {
+          let selectedRecipe = null;
+          if (qLower.includes('chicken')) {
+            selectedRecipe = LONGEVITY_RECIPES.find(r => r.title.toLowerCase().includes('chicken'));
+          } else if (qLower.includes('vegan') || qLower.includes('plant') || qLower.includes('tempeh')) {
+            selectedRecipe = LONGEVITY_RECIPES.find(r => r.category === 'plant-based');
+          } else if (qLower.includes('keto') || qLower.includes('steak') || qLower.includes('beef')) {
+            selectedRecipe = LONGEVITY_RECIPES.find(r => r.category === 'keto');
+          } else if (qLower.includes('sardine')) {
+            selectedRecipe = LONGEVITY_RECIPES.find(r => r.title.toLowerCase().includes('sardine'));
+          } else if (qLower.includes('halibut')) {
+            selectedRecipe = LONGEVITY_RECIPES.find(r => r.title.toLowerCase().includes('halibut'));
+          }
+
+          if (!selectedRecipe) {
+            currentRecipeIndex = (currentRecipeIndex + 1) % LONGEVITY_RECIPES.length;
+            selectedRecipe = LONGEVITY_RECIPES[currentRecipeIndex];
+          }
+
+          renderRecipeCard(selectedRecipe);
+
+          reply = `<strong>🌱 Vitaliq Longevity Recipe Architect: ${selectedRecipe.title}</strong><br>
+          <span style="display: inline-block; background: rgba(6,182,212,0.15); color: #22d3ee; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: 99px; margin: 4px 0;">${selectedRecipe.categoryLabel} • ${selectedRecipe.time}</span><br>
+          • <strong>Macro Breakdown:</strong> <strong>${selectedRecipe.calories} kcal</strong> | <strong>${selectedRecipe.protein}g Protein</strong> | ${selectedRecipe.carbs}g Carbs | ${selectedRecipe.fat}g Healthy Fat<br>
+          • <strong>Longevity Bio-Actives:</strong> ${selectedRecipe.bioactives}<br>
+          • <strong>Clinical Overview:</strong> ${selectedRecipe.description}<br>
+          • <strong>Preparation Protocol:</strong> ${selectedRecipe.instructions}<br>
+          <em>💡 Tap "⚡ Log This Meal" in your Nutrition tab to record this into your daily macro budget.</em>`;
         } else if (qLower.includes('sleep') || qLower.includes('melatonin')) {
           reply = `<strong>Circadian Sleep Hygiene:</strong> Your deep sleep ratio was exceptional at 24% last night. To replicate this, dim household lights by 21:00, ensure your bedroom is cooled to 67°F (19°C), and avoid all screen exposure 60 minutes prior to bed.`;
         } else if (qLower.includes('medication') || qLower.includes('magnesium')) {
@@ -2286,6 +2621,10 @@
         appendChat('ai', reply);
       }, 600);
     };
+
+    // Render initial recipe and nutrition numbers
+    renderRecipeCard(LONGEVITY_RECIPES[0]);
+    updateNutritionDisplay();
 
     // Service Worker Registration with Immediate Update Check
     if ('serviceWorker' in navigator) {
