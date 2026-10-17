@@ -1,7 +1,7 @@
 {
   "id": "com.vitalis.wellness",
-  "name": "Vitalis: AI Longevity Coach",
-  "short_name": "Vitalis",
+  "name": "Vitaliq: AI Longevity Coach",
+  "short_name": "Vitaliq",
   "description": "Consumer Preventive Longevity, Zone-2 Fitness, Circadian Nutrition, Sleep Architecture, Medication Adherence & Habit Streaks.",
   "start_url": "https://medicore-wellness.web.app/",
   "scope": "/",
@@ -34,7 +34,7 @@
       "sizes": "1024x576",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Vitalis Longevity Command Center — Telemetry, Sleep & Habits"
+      "label": "Vitaliq Longevity Command Center — Telemetry, Sleep & Habits"
     }
   ],
   "shortcuts": [
