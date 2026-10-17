@@ -767,8 +767,6 @@
         <div class="sync-indicator"></div>
         <span id="syncStatusText">Health Connect: Synced</span>
       </div>
-      <button class="btn btn-outline btn-sm" id="firebaseStatusBtn" onclick="openFirebaseModal()">🔥 Firebase</button>
-      <button class="btn btn-outline btn-sm" onclick="openApiKeyModal()">⚙️ Gemini Settings</button>
       <button class="btn btn-primary btn-sm" onclick="triggerDailyEvaluation()">✨ Daily AI Brief</button>
       <button class="btn btn-outline btn-sm" id="profileHeaderBtn" onclick="openProfileModal()" style="display: flex; align-items: center; gap: 0.35rem;" title="Profile & Sign in with Apple">
         <span id="headerAvatarBadge">👤</span> <span id="headerProfileLabel">Profile</span>
@@ -1603,6 +1601,38 @@
         </div>
       </div>
 
+      <!-- Advanced: Cloud Database & AI Settings (Discreet collapsible) -->
+      <div style="margin-bottom: 1.25rem; padding-top: 0.85rem; border-top: 1px dashed var(--border);">
+        <details style="cursor: pointer;">
+          <summary style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); outline: none; list-style: none; display: flex; align-items: center; justify-content: space-between;">
+            <span>⚙️ Advanced Backend &amp; AI Engine</span>
+            <span style="font-size: 0.7rem; color: var(--primary);">Options ▾</span>
+          </summary>
+          <div style="margin-top: 0.85rem; display: flex; flex-direction: column; gap: 0.75rem;">
+            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.76rem;">
+              <div style="font-weight: 700; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.35rem;">
+                <span>🔥 Cloud Firestore Backend</span>
+                <span style="color: #15803d; font-size: 0.7rem; font-weight: 700;">● Connected</span>
+              </div>
+              <div style="color: var(--text-muted);">Project ID: <strong>rugged-alcove-388517</strong></div>
+              <div style="color: var(--text-muted);">Multi-Site CDN: <strong>medicore-wellness.web.app</strong></div>
+              <div style="color: var(--text-muted);">Telemetry Path: <code>/users/{uid}/wellness</code></div>
+            </div>
+
+            <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.75rem; font-size: 0.76rem;">
+              <div style="font-weight: 700; margin-bottom: 0.25rem;">✨ Google Gemini 3.8 / Flash Engine</div>
+              <div style="color: var(--text-muted); margin-bottom: 0.5rem; line-height: 1.4;">
+                Embedded clinical algorithms run on-device. Enter an optional Gemini API key to query cloud LLM directly:
+              </div>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="password" id="customApiKeyInline" class="chat-input" placeholder="AIzaSy..." style="font-size: 0.75rem; flex: 1; padding: 0.45rem 0.65rem;">
+                <button class="btn btn-primary btn-sm" style="font-size: 0.72rem; padding: 0.35rem 0.75rem;" onclick="saveInlineGeminiKey()">Save Key</button>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
       <div style="display: flex; gap: 0.5rem;">
         <button class="btn btn-outline" style="flex: 1;" onclick="closeModal('profileModal')">Cancel</button>
         <button class="btn btn-primary" style="flex: 2;" onclick="saveUserProfile()">💾 Save Profile</button>
@@ -1857,14 +1887,25 @@
       const ageInput = document.getElementById('profileAgeInput');
       const rhrInput = document.getElementById('profileRHRInput');
       const sleepInput = document.getElementById('profileSleepInput');
+      const keyInput = document.getElementById('customApiKeyInline');
 
       if (nameInput) nameInput.value = userProfile.name;
       if (ageInput) ageInput.value = userProfile.age;
       if (rhrInput) rhrInput.value = userProfile.targetRHR;
       if (sleepInput) sleepInput.value = userProfile.targetSleep;
+      if (keyInput) keyInput.value = geminiApiKey;
 
       updateProfileUI();
       document.getElementById('profileModal').style.display = 'flex';
+    };
+
+    window.saveInlineGeminiKey = function() {
+      const input = document.getElementById('customApiKeyInline');
+      if (input) {
+        geminiApiKey = input.value.trim();
+        localStorage.setItem('GEMINI_API_KEY', geminiApiKey);
+        showToast(geminiApiKey ? 'Custom Gemini API key active!' : 'Using on-device clinical AI', '✨');
+      }
     };
 
     function updateProfileUI() {
