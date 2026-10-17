@@ -247,6 +247,89 @@
       animation: recipeFadeIn 0.3s ease-out;
     }
 
+    /* Fitness Custom Filters & Guided Cards */
+    .fitness-filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 0.32rem 0.75rem;
+      border-radius: 99px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: var(--transition);
+      outline: none;
+    }
+    .fitness-filter-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    .fitness-filter-btn.active {
+      background: rgba(6, 182, 212, 0.18);
+      border-color: rgba(6, 182, 212, 0.6);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.25);
+    }
+    .workout-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.15rem;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+    }
+    .workout-card:hover {
+      border-color: rgba(6, 182, 212, 0.35);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+    .workout-step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.6rem 0.75rem;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-sm);
+      margin-bottom: 0.4rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .workout-step-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .workout-step-item.completed {
+      opacity: 0.5;
+      text-decoration: line-through;
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.25);
+    }
+    .workout-step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(6, 182, 212, 0.2);
+      color: var(--accent-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .timer-display {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 0.08em;
+      text-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+    }
+
     /* Main Container Layout */
     .app-container {
       max-width: 1440px;
@@ -1079,10 +1162,10 @@
         <div class="card">
           <div class="card-header">
             <div class="card-title-group">
-              <div class="card-icon" style="background: #e0f2fe; color: #0284c7;">🏋️</div>
+              <div class="card-icon" style="background: rgba(2, 132, 199, 0.15); color: #0284c7;">🏋️</div>
               <div>
-                <div class="card-title">Cardiorespiratory &amp; Hypertrophy Suite</div>
-                <div style="font-size: 0.75rem; color: var(--text-muted);">Wear OS &amp; Health Connect Ingestion</div>
+                <div class="card-title">Cardiorespiratory &amp; Longevity Fitness Suite</div>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Wear OS, Apple HealthKit &amp; Health Connect Calibrated</div>
               </div>
             </div>
             <button class="btn btn-primary btn-sm" onclick="openWorkoutModal()">+ Log Custom Workout</button>
@@ -1109,54 +1192,89 @@
           </div>
 
           <!-- Weekly Progress -->
-          <div style="background: #f8fafc; border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1rem; margin-bottom: 1.25rem;">
             <div style="display: flex; justify-content: space-between; font-size: 0.82rem; font-weight: 700; margin-bottom: 0.4rem;">
               <span>Weekly Aerobic Base Target: 150m Zone-2</span>
-              <span class="text-primary font-bold">122m / 150m (81%)</span>
+              <span id="fitWeeklyAerobicText" class="text-primary font-bold">122m / 150m (81%)</span>
             </div>
-            <div style="width: 100%; height: 8px; background: #e2e8f0; border-radius: 99px; overflow: hidden;">
-              <div style="width: 81%; height: 100%; background: linear-gradient(90deg, #0891b2, #10b981);"></div>
+            <div style="width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 99px; overflow: hidden;">
+              <div id="fitWeeklyAerobicBar" style="width: 81%; height: 100%; background: linear-gradient(90deg, #0891b2, #10b981); transition: width 0.4s ease;"></div>
             </div>
           </div>
 
-          <!-- Today's Prescribed Plan -->
-          <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem;">Today's Prescribed Regimen</h3>
-          <div style="display: flex; flex-direction: column; gap: 0.65rem;">
-            
-            <div class="item-row card" style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; background: #f8fafc;">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="font-size: 1.3rem;">🏃</span>
-                <div>
-                  <strong style="font-size: 0.88rem;">45m Zone-2 Aerobic Run (132-140 bpm)</strong>
-                  <div style="font-size: 0.75rem; color: var(--text-muted);">Mitochondrial biogenesis, fatty acid oxidation, capillary density</div>
-                </div>
+          <!-- Clinical Longevity Regimen Library & Multi-Filter Bar -->
+          <div style="margin-bottom: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div>
+                <h3 style="font-size: 0.95rem; font-weight: 800; margin-bottom: 0.2rem;">Adaptive Longevity Protocols</h3>
+                <div style="font-size: 0.75rem; color: var(--text-muted);">Calibrate by physiological focus, age biological decade, duration, and cardiac intensity.</div>
               </div>
-              <button class="btn btn-outline btn-sm" onclick="completeRegimen(this, 45)">Complete (45m)</button>
+              <button class="btn btn-outline btn-sm" style="font-size: 0.72rem; padding: 0.25rem 0.65rem;" onclick="resetFitnessFilters()">↺ Reset Filters</button>
             </div>
 
-            <div class="item-row card" style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; background: #f8fafc;">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="font-size: 1.3rem;">🏋️</span>
-                <div>
-                  <strong style="font-size: 0.88rem;">Posterior Chain Longevity (RDLs + Split Squats)</strong>
-                  <div style="font-size: 0.75rem; color: var(--text-muted);">Bone mineral density, sarcopenia deterrence, glute-hamstring strength</div>
-                </div>
+            <!-- Filter Category 1: Gender / Physiological Focus -->
+            <div style="margin-bottom: 0.6rem;">
+              <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.35rem;">
+                Gender &amp; Physiological Focus
               </div>
-              <button class="btn btn-outline btn-sm" onclick="completeRegimen(this, 30)">Complete (30m)</button>
+              <div style="display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; scrollbar-width: none;">
+                <button class="fitness-filter-btn active" data-filter="gender" data-value="all" onclick="setFitnessFilter('gender', 'all')">All Focuses</button>
+                <button class="fitness-filter-btn" data-filter="gender" data-value="women" onclick="setFitnessFilter('gender', 'women')">👩 Women's Longevity (Bone &amp; Pelvic)</button>
+                <button class="fitness-filter-btn" data-filter="gender" data-value="men" onclick="setFitnessFilter('gender', 'men')">👨 Men's Longevity (Sarcopenia &amp; Grip)</button>
+              </div>
             </div>
 
-            <div class="item-row card" style="display: flex; justify-content: space-between; align-items: center; padding: 0.85rem; background: #f8fafc;">
-              <div style="display: flex; align-items: center; gap: 0.75rem;">
-                <span style="font-size: 1.3rem;">🧘</span>
-                <div>
-                  <strong style="font-size: 0.88rem;">12m Thoracic Spine &amp; Hip Capsule Mobility</strong>
-                  <div style="font-size: 0.75rem; color: var(--text-muted);">Joint lubrication, posture restoration, fascial elasticity</div>
-                </div>
+            <!-- Filter Category 2: Age Bracket -->
+            <div style="margin-bottom: 0.6rem;">
+              <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.35rem;">
+                Biological Age Decade
               </div>
-              <button class="btn btn-outline btn-sm" onclick="completeRegimen(this, 12)">Complete (12m)</button>
+              <div style="display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; scrollbar-width: none;">
+                <button class="fitness-filter-btn active" data-filter="age" data-value="all" onclick="setFitnessFilter('age', 'all')">All Decades</button>
+                <button class="fitness-filter-btn" data-filter="age" data-value="20-35" onclick="setFitnessFilter('age', '20-35')">⚡ 20–35 (Peak VO2 &amp; Power)</button>
+                <button class="fitness-filter-btn" data-filter="age" data-value="36-55" onclick="setFitnessFilter('age', '36-55')">🛡️ 36–55 (Metabolic &amp; Joint Defense)</button>
+                <button class="fitness-filter-btn" data-filter="age" data-value="56+" onclick="setFitnessFilter('age', '56+')">🌿 56+ (Joint Care, Balance &amp; Anti-Fall)</button>
+              </div>
             </div>
 
+            <!-- Filter Category 3: Time / Duration -->
+            <div style="margin-bottom: 0.6rem;">
+              <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.35rem;">
+                Available Duration
+              </div>
+              <div style="display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; scrollbar-width: none;">
+                <button class="fitness-filter-btn active" data-filter="time" data-value="all" onclick="setFitnessFilter('time', 'all')">Any Time</button>
+                <button class="fitness-filter-btn" data-filter="time" data-value="15" onclick="setFitnessFilter('time', '15')">⏱️ 15–20m (Express Mobility)</button>
+                <button class="fitness-filter-btn" data-filter="time" data-value="30" onclick="setFitnessFilter('time', '30')">⏱️ 30–35m (Standard Protocol)</button>
+                <button class="fitness-filter-btn" data-filter="time" data-value="45" onclick="setFitnessFilter('time', '45')">⏱️ 40–45m+ (Deep Adaptations)</button>
+              </div>
+            </div>
+
+            <!-- Filter Category 4: Intensity & Impact -->
+            <div style="margin-bottom: 0.85rem;">
+              <div style="font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 0.35rem;">
+                Intensity &amp; Joint Impact
+              </div>
+              <div style="display: flex; gap: 0.4rem; overflow-x: auto; padding-bottom: 0.2rem; scrollbar-width: none;">
+                <button class="fitness-filter-btn active" data-filter="impact" data-value="all" onclick="setFitnessFilter('impact', 'all')">All Intensities</button>
+                <button class="fitness-filter-btn" data-filter="impact" data-value="low-impact" onclick="setFitnessFilter('impact', 'low-impact')">🟢 Low Impact / Joint-Friendly</button>
+                <button class="fitness-filter-btn" data-filter="impact" data-value="zone-2" onclick="setFitnessFilter('impact', 'zone-2')">🔵 Zone-2 Mitochondrial Steady</button>
+                <button class="fitness-filter-btn" data-filter="impact" data-value="high" onclick="setFitnessFilter('impact', 'high')">🔴 VO2 Max / Peak Output</button>
+              </div>
+            </div>
+
+            <!-- Result Count Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0.75rem; background: rgba(255, 255, 255, 0.02); border-radius: var(--radius-sm); border: 1px solid var(--border); margin-bottom: 0.85rem; font-size: 0.76rem; color: var(--text-muted);">
+              <span>Showing <strong id="fitnessMatchCount" style="color: var(--accent-cyan);">6</strong> clinically prescribed protocols</span>
+              <span style="font-size: 0.7rem; color: #10b981;">● Calibrated with Bio Age (33.4y)</span>
+            </div>
           </div>
+
+          <!-- Dynamic Workouts Container -->
+          <div id="fitnessWorkoutsContainer" style="display: flex; flex-direction: column; gap: 0.85rem;">
+            <!-- Rendered dynamically by renderFitnessWorkouts() -->
+          </div>
+
         </div>
       </section>
 
@@ -1640,6 +1758,60 @@
     </div>
   </div>
 
+  <!-- Modal: Guided Workout Player & Stopwatch -->
+  <div class="modal-overlay" id="guidedWorkoutModal">
+    <div class="modal-box" style="max-width: 520px; max-height: 90vh; overflow-y: auto;">
+      <button class="modal-close" onclick="closeGuidedWorkout()">&times;</button>
+      
+      <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.25rem;">
+        <span id="guidedModalCategory" class="badge-pill" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3);">All Ages • Low Impact</span>
+        <span id="guidedModalTime" style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">⏱️ 30m</span>
+      </div>
+
+      <h3 id="guidedModalTitle" style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.35rem; color: var(--text-main);">
+        Zone-2 Mitochondrial Aerobic Base
+      </h3>
+      <p id="guidedModalDesc" style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem; line-height: 1.4;">
+        Mitochondrial biogenesis, fatty acid oxidation, and lactate clearance.
+      </p>
+
+      <!-- Digital Stopwatch Section -->
+      <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: var(--radius-md); padding: 1.25rem; text-align: center; margin-bottom: 1.15rem; position: relative;">
+        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #38bdf8; margin-bottom: 0.35rem;">
+          Session Timer
+        </div>
+        <div class="timer-display" id="guidedTimerDisplay">00:00</div>
+        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.85rem;" id="guidedHrZoneGuidance">
+          Target Heart Rate: <strong>125–138 bpm</strong> (Zone 2)
+        </div>
+        <div style="display: flex; justify-content: center; gap: 0.6rem;">
+          <button class="btn btn-primary btn-sm" id="timerStartBtn" onclick="toggleWorkoutTimer()">▶ Start Timer</button>
+          <button class="btn btn-outline btn-sm" onclick="resetWorkoutTimer()">↺ Reset</button>
+        </div>
+      </div>
+
+      <!-- Step-by-Step Exercise Checklist -->
+      <div style="margin-bottom: 1.25rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+          <span style="font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-muted);">
+            Step-by-Step Protocol (<span id="guidedCompletedCount">0</span>/<span id="guidedTotalSteps">0</span> done)
+          </span>
+          <span style="font-size: 0.72rem; color: var(--accent-cyan);">Tap step to check off</span>
+        </div>
+        <div id="guidedStepsContainer">
+          <!-- Step items rendered dynamically -->
+        </div>
+      </div>
+
+      <!-- Complete Action -->
+      <div style="display: flex; gap: 0.6rem;">
+        <button class="btn btn-outline" style="flex: 1;" onclick="closeGuidedWorkout()">Close</button>
+        <button class="btn btn-primary" style="flex: 2;" id="completeGuidedBtn" onclick="completeGuidedWorkout()">✓ Complete &amp; Log Workout</button>
+      </div>
+
+    </div>
+  </div>
+
   <!-- Modal: Meal Logger -->
   <div class="modal-overlay" id="mealModal">
     <div class="modal-box">
@@ -2080,31 +2252,443 @@
       showToast('Hydration counter reset', '💧');
     };
 
-    // Workout Logging
-    window.logQuickWorkout = function() {
-      zone2Mins += 30;
-      stepsCount += 3200;
+    // Fitness Protocol Engine & Custom Longevity Regimens
+    const LONGEVITY_WORKOUTS = [
+      {
+        id: "desk-relief-15",
+        title: "15m Express Desk-Relief & Spinal Longevity",
+        gender: "all",
+        ageBracket: ["20-35", "36-55", "56+"],
+        ageLabel: "All Ages (20–70+)",
+        genderLabel: "All Focuses",
+        time: 15,
+        timeLabel: "15 mins",
+        impact: "low-impact",
+        impactLabel: "🟢 Low Impact / Joint-Friendly",
+        intensity: "Zone 1 (90–110 bpm)",
+        calories: 90,
+        biomarkers: "Synovial lubrication, spinal decompression, thoracic kyphosis reversal",
+        description: "Zero-sweat orthopedic protocol designed to counteract prolonged sitting, decompress lumbar discs, and activate dormant glutes.",
+        steps: [
+          { name: "Cat-Cow Spinal Waves", sets: "2 mins", cue: "Synchronize deep belly breaths, gently articulating each vertebra from sacrum to neck." },
+          { name: "Thoracic Open-Books & Thread-the-Needle", sets: "3 mins (8 per side)", cue: "Keep hips stacked; rotate strictly through the upper back to restore rotation." },
+          { name: "Couch Stretch / Psoas Opener", sets: "4 mins (2m / side)", cue: "Squeeze trailing glute hard to inhibit and release chronically tight hip flexors." },
+          { name: "Glute Bridge Isometric Holds", sets: "3 mins (3 x 45s)", cue: "Drive through heels, maintain neutral pelvis, focus on gluteus maximus contraction." },
+          { name: "Box Breathing Decompression", sets: "3 mins", cue: "Inhale 4s, hold 4s, exhale 4s, hold 4s to switch autonomic tone into parasympathetic mode." }
+        ]
+      },
+      {
+        id: "zone2-incline-30",
+        title: "30m Low-Impact Zone-2 Incline Walk / Spin",
+        gender: "all",
+        ageBracket: ["20-35", "36-55", "56+"],
+        ageLabel: "All Ages (20–70+)",
+        genderLabel: "Mitochondrial Base",
+        time: 30,
+        timeLabel: "30 mins",
+        impact: "zone-2",
+        impactLabel: "🔵 Zone-2 Steady",
+        intensity: "Zone 2 (125–138 bpm)",
+        calories: 220,
+        biomarkers: "Mitochondrial biogenesis, fatty acid oxidation, capillary density",
+        description: "The gold standard cardiorespiratory longevity protocol. Keeps blood lactate below 2.0 mmol/L to optimize cellular energy efficiency without joint pounding.",
+        steps: [
+          { name: "Flat Aerobic Warm-Up", sets: "3 mins @ flat pace", cue: "Gentle cadence, focus on nasal diaphragmatic breathing to stabilize baseline HR." },
+          { name: "Incline Treadmill or Erg Spin (Zone-2 Steady)", sets: "24 mins continuous", cue: "Maintain conversational pace (nasal breathing preferred). Treadmill 10-12% @ 2.8-3.2 mph." },
+          { name: "Active Flush Cooldown", sets: "3 mins flat", cue: "Drop speed to 2.0 mph, flush metabolic metabolites, allow heart rate to return under 100 bpm." }
+        ]
+      },
+      {
+        id: "women-bone-density-35",
+        title: "35m Women's Bone Density & Pelvic Stability",
+        gender: "women",
+        ageBracket: ["36-55", "56+"],
+        ageLabel: "36–55 & 56+ Priority",
+        genderLabel: "👩 Women's Longevity",
+        time: 30,
+        timeLabel: "35 mins",
+        impact: "low-impact",
+        impactLabel: "🟢 Low Impact / Bone-Loading",
+        intensity: "Zone 2 (115–130 bpm)",
+        calories: 210,
+        biomarkers: "Osteoblast mineral loading, glute medius force vector, pelvic floor integrity",
+        description: "Clinical osteogenic loading protocol engineered to preserve bone mineral density, combat post-35 hip/femoral neck loss, and reinforce pelvic stability.",
+        steps: [
+          { name: "Goblet Squats with 3s Slow Eccentric", sets: "3 sets x 10 reps", cue: "Use dumbbell/kettlebell; take 3 seconds down to stimulate osteoblast remodeling in femur." },
+          { name: "Romanian Deadlifts (Dumbbell)", sets: "3 sets x 10 reps", cue: "Hinge hips backward, keep lats engaged, feel deep hamstring stretch without lower back flexion." },
+          { name: "Supported Bulgarian Split Squats", sets: "2 sets x 8 reps/side", cue: "Hold onto a wall/rack for balance; focus completely on glute load and knee tracking over toes." },
+          { name: "Lateral Banded Monster Walks & Clamshells", sets: "3 sets x 15 reps", cue: "Activate gluteus medius to stabilize pelvis and shield hip joint cartilage." },
+          { name: "Suitcase Carries (Unilateral Bone Loading)", sets: "3 sets x 40m walks", cue: "Carry weight on one side only; resist lateral bend to ignite contralateral core stabilizers." }
+        ]
+      },
+      {
+        id: "men-sarcopenia-armor-40",
+        title: "40m Men's Sarcopenia Defense & Core Armour",
+        gender: "men",
+        ageBracket: ["20-35", "36-55"],
+        ageLabel: "20–35 & 36–55 Priority",
+        genderLabel: "👨 Men's Longevity",
+        time: 45,
+        timeLabel: "40 mins",
+        impact: "high",
+        impactLabel: "🔴 Hypertrophy & Joint Armour",
+        intensity: "Zone 2–3 (120–145 bpm)",
+        calories: 310,
+        biomarkers: "Type-II muscle fiber preservation, grip strength biomarker, testosterone receptor sensitivity",
+        description: "Defends against age-associated sarcopenia. High grip strength and posterior chain power correlate directly with reduced all-cause mortality across cohorts.",
+        steps: [
+          { name: "Trap Bar / Hex Bar Deadlifts", sets: "4 sets x 6 reps", cue: "Neutral grip keeps spine safe. Drive feet through the floor, lock out glutes at the top." },
+          { name: "Neutral Grip Dumbbell Overhead Press", sets: "3 sets x 8-10 reps", cue: "Palms facing in protects rotator cuffs; brace abs to prevent lumbar hyperextension." },
+          { name: "Chest-Supported Dumbbell Rows", sets: "3 sets x 10-12 reps", cue: "Pull elbows toward hips, squeeze scapulae for 1 full second to reverse desk slouch." },
+          { name: "Heavy Farmer's Walk Grip Finisher", sets: "3 sets x 60 seconds", cue: "Walk tall with heavy dumbbells. Grip strength is a primary biomarker for longevity." },
+          { name: "Pallof Anti-Rotation Core Hold", sets: "3 sets x 30s per side", cue: "Cable or band pressed forward; resist torso rotation to lock down spinal stability." }
+        ]
+      },
+      {
+        id: "senior-balance-joint-20",
+        title: "20m Senior Balance, Joint Care & Fall-Prevention",
+        gender: "all",
+        ageBracket: ["56+"],
+        ageLabel: "56+ Golden Longevity",
+        genderLabel: "All Focuses",
+        time: 15,
+        timeLabel: "20 mins",
+        impact: "low-impact",
+        impactLabel: "🟢 Low Impact / Geriatric Safe",
+        intensity: "Zone 1 (85–105 bpm)",
+        calories: 85,
+        biomarkers: "Vestibular adaptation, proprioceptive firing, ankle joint range of motion",
+        description: "Gentle physical therapy-grade sequence focusing on ankle stability, single-leg stance, and dynamic proprioception to safeguard against accidental falls.",
+        steps: [
+          { name: "Chair Sit-to-Stands", sets: "3 sets x 10 reps", cue: "Stand up from a sturdy chair without using arm rests if possible; lower down slowly under control." },
+          { name: "Single-Leg Stork Balance (Wall-Supported)", sets: "3 sets x 30s / leg", cue: "Stand near a wall for safety; fix eyes on a steady horizon point to calibrate balance." },
+          { name: "Tandem Heel-to-Toe Tightrope Walk", sets: "3 sets x 12 steps", cue: "Place heel directly in front of opposite toes along a straight floor seam." },
+          { name: "Wall Push-Ups with Scapular Squeeze", sets: "3 sets x 12 reps", cue: "Painless upper-body pressing that maintains bone density in wrists and shoulders." },
+          { name: "Seated Synovial Ankle & Neck Circles", sets: "2 mins slow tempo", cue: "Smooth circular motions to distribute synovial fluid through stiff morning joints." }
+        ]
+      },
+      {
+        id: "norwegian-vo2max-45",
+        title: "45m Norwegian 4x4 VO2 Max Ceiling Booster",
+        gender: "all",
+        ageBracket: ["20-35", "36-55"],
+        ageLabel: "20–35 & 36–55 High Capacity",
+        genderLabel: "Cardiovascular Peak",
+        time: 45,
+        timeLabel: "45 mins",
+        impact: "high",
+        impactLabel: "🔴 VO2 Max / Peak Output",
+        intensity: "Zone 4–5 (160–178 bpm)",
+        calories: 460,
+        biomarkers: "Left ventricular stroke volume, mitochondrial cristae density, VO2 max percentile",
+        description: "The evidence-based NTNU Norwegian 4x4 interval protocol. Shown in clinical trials to produce the largest measurable increase in cardiorespiratory fitness.",
+        steps: [
+          { name: "Progressive Warm-Up", sets: "10 mins (Zone 1 -> Zone 2)", cue: "Gradually elevate heart rate to 130 bpm on rowing machine, Airdyne bike, or treadmill." },
+          { name: "Interval 1: 4m @ 85-95% Max HR + 3m Z2 Recovery", sets: "7 mins total", cue: "Push hard (unable to speak in sentences). Recover with 3 mins gentle active pedaling." },
+          { name: "Interval 2: 4m @ 85-95% Max HR + 3m Z2 Recovery", sets: "7 mins total", cue: "Lock into steady cadence; focus on forceful exhalations." },
+          { name: "Interval 3: 4m @ 85-95% Max HR + 3m Z2 Recovery", sets: "7 mins total", cue: "Maintain wattage output despite rising leg fatigue; cardiac stroke volume is peaking." },
+          { name: "Interval 4: 4m @ 85-95% Max HR Finisher", sets: "4 mins peak effort", cue: "Final push to expand cardiorespiratory ceiling. Leave nothing on the table." },
+          { name: "Zone-1 Lactic Acid Flush", sets: "10 mins easy spin", cue: "Crucial active recovery to reabsorb lactate and bring parasympathetic tone back down." }
+        ]
+      }
+    ];
+
+    let fitnessFilterState = {
+      gender: 'all',
+      age: 'all',
+      time: 'all',
+      impact: 'all'
+    };
+
+    window.setFitnessFilter = function(filterCategory, value) {
+      fitnessFilterState[filterCategory] = value;
+      document.querySelectorAll(`.fitness-filter-btn[data-filter="${filterCategory}"]`).forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-value') === value);
+      });
+      renderFitnessWorkouts();
+      showToast(`Filter applied: ${filterCategory.toUpperCase()} → ${value}`, '🏋️');
+    };
+
+    window.resetFitnessFilters = function() {
+      fitnessFilterState = { gender: 'all', age: 'all', time: 'all', impact: 'all' };
+      document.querySelectorAll('.fitness-filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-value') === 'all');
+      });
+      renderFitnessWorkouts();
+      showToast('Fitness filters reset to all protocols', '↺');
+    };
+
+    function getFilteredWorkouts() {
+      return LONGEVITY_WORKOUTS.filter(w => {
+        if (fitnessFilterState.gender !== 'all') {
+          if (w.gender !== 'all' && w.gender !== fitnessFilterState.gender) return false;
+        }
+        if (fitnessFilterState.age !== 'all') {
+          if (!w.ageBracket.includes(fitnessFilterState.age)) return false;
+        }
+        if (fitnessFilterState.time !== 'all') {
+          const tVal = parseInt(fitnessFilterState.time, 10);
+          if (tVal === 15 && w.time > 20) return false;
+          if (tVal === 30 && (w.time < 25 || w.time > 35)) return false;
+          if (tVal === 45 && w.time < 40) return false;
+        }
+        if (fitnessFilterState.impact !== 'all') {
+          if (fitnessFilterState.impact === 'low-impact' && w.impact !== 'low-impact') return false;
+          if (fitnessFilterState.impact === 'zone-2' && w.impact !== 'zone-2') return false;
+          if (fitnessFilterState.impact === 'high' && w.impact !== 'high') return false;
+        }
+        return true;
+      });
+    }
+
+    function renderFitnessWorkouts() {
+      const container = document.getElementById('fitnessWorkoutsContainer');
+      if (!container) return;
+      const filtered = getFilteredWorkouts();
+      const countEl = document.getElementById('fitnessMatchCount');
+      if (countEl) countEl.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div style="background: rgba(255, 255, 255, 0.03); border: 1px dashed var(--border); border-radius: var(--radius-md); padding: 2rem; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+            <h4 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.25rem;">No exact matching protocols</h4>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1rem;">Try broadening your gender, age, or time filters.</p>
+            <button class="btn btn-outline btn-sm" onclick="resetFitnessFilters()">↺ Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(w => {
+        return `
+          <div class="workout-card recipe-animate">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 240px;">
+                <div style="display: flex; align-items: center; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 0.35rem;">
+                  <span class="badge-pill" style="background: rgba(6, 182, 212, 0.15); color: #22d3ee; border: 1px solid rgba(6, 182, 212, 0.3); font-size: 0.68rem;">
+                    ${w.genderLabel}
+                  </span>
+                  <span class="badge-pill" style="background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); font-size: 0.68rem;">
+                    ${w.ageLabel}
+                  </span>
+                  <span class="badge-pill" style="background: rgba(147, 51, 234, 0.15); color: #c084fc; border: 1px solid rgba(147, 51, 234, 0.3); font-size: 0.68rem;">
+                    ⏱️ ${w.timeLabel}
+                  </span>
+                </div>
+                <h4 style="font-size: 0.98rem; font-weight: 800; margin-bottom: 0.25rem; color: var(--text-main);">${w.title}</h4>
+                <p style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.4; margin-bottom: 0.45rem;">${w.description}</p>
+                <div style="font-size: 0.75rem; color: #38bdf8; font-weight: 600; display: flex; align-items: center; gap: 0.35rem;">
+                  <span>🎯 Target HR: ${w.intensity}</span>
+                  <span>•</span>
+                  <span>🔥 ~${w.calories} kcal</span>
+                </div>
+              </div>
+
+              <div style="text-align: right; display: flex; flex-direction: column; gap: 0.4rem; min-width: 140px;">
+                <button class="btn btn-primary btn-sm" onclick="openGuidedWorkout('${w.id}')">
+                  ▶ Start Guided (${w.time}m)
+                </button>
+                <button class="btn btn-outline btn-sm" style="font-size: 0.72rem;" onclick="quickLogWorkout('${w.id}')">
+                  ⚡ Quick Log (+${w.time}m)
+                </button>
+              </div>
+            </div>
+
+            <!-- Expandable Form Cues & Step Breakdown -->
+            <details style="background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: var(--radius-sm); padding: 0.65rem 0.85rem; font-size: 0.78rem;">
+              <summary style="cursor: pointer; color: var(--accent-cyan); font-weight: 700; user-select: none; display: flex; justify-content: space-between; align-items: center;">
+                <span>📋 View ${w.steps.length} Exercise Steps &amp; Clinical Cues</span>
+                <span style="font-size: 0.7rem; color: var(--text-muted);">Expand ▾</span>
+              </summary>
+              <div style="margin-top: 0.65rem; display: flex; flex-direction: column; gap: 0.45rem;">
+                <div style="font-size: 0.72rem; color: #a1a1aa; margin-bottom: 0.25rem;">
+                  🔬 <strong>Primary Adaptations:</strong> ${w.biomarkers}
+                </div>
+                ${w.steps.map((st, idx) => `
+                  <div style="padding: 0.45rem 0.6rem; background: rgba(255, 255, 255, 0.02); border-radius: 4px; border-left: 2px solid var(--accent-cyan);">
+                    <div style="display: flex; justify-content: space-between; font-weight: 700; color: var(--text-main); font-size: 0.76rem;">
+                      <span>${idx + 1}. ${st.name}</span>
+                      <span style="color: #38bdf8;">${st.sets}</span>
+                    </div>
+                    <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem;">
+                      💡 Form Cue: ${st.cue}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </details>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Interactive Guided Workout Modal & Stopwatch
+    let currentActiveWorkout = null;
+    let workoutTimerInterval = null;
+    let workoutTimerSeconds = 0;
+    let workoutTimerRunning = false;
+
+    window.openGuidedWorkout = function(workoutId) {
+      const workout = LONGEVITY_WORKOUTS.find(w => w.id === workoutId);
+      if (!workout) return;
+      currentActiveWorkout = workout;
+
+      // Reset stopwatch
+      resetWorkoutTimer();
+
+      // Populate Modal Content
+      document.getElementById('guidedModalCategory').textContent = `${workout.genderLabel} • ${workout.ageLabel}`;
+      document.getElementById('guidedModalTime').textContent = `⏱️ ${workout.timeLabel}`;
+      document.getElementById('guidedModalTitle').textContent = workout.title;
+      document.getElementById('guidedModalDesc').textContent = workout.description;
+      document.getElementById('guidedHrZoneGuidance').innerHTML = `Target Heart Rate: <strong>${workout.intensity}</strong> (~${workout.calories} kcal)`;
+      document.getElementById('guidedCompletedCount').textContent = '0';
+      document.getElementById('guidedTotalSteps').textContent = workout.steps.length;
+
+      const stepsContainer = document.getElementById('guidedStepsContainer');
+      stepsContainer.innerHTML = workout.steps.map((step, idx) => `
+        <div class="workout-step-item" id="guidedStepRow_${idx}" onclick="toggleStepCheck(${idx})">
+          <input type="checkbox" id="guidedStepCheck_${idx}" style="cursor: pointer; margin-top: 2px;" onclick="event.stopPropagation(); toggleStepCheck(${idx})">
+          <div class="workout-step-num">${idx + 1}</div>
+          <div style="flex: 1;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; color: var(--text-main);">
+              <span>${step.name}</span>
+              <span style="color: #38bdf8; font-size: 0.74rem;">${step.sets}</span>
+            </div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.15rem;">
+              ${step.cue}
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.getElementById('completeGuidedBtn').textContent = `✓ Complete & Log (+${workout.time}m)`;
+      document.getElementById('guidedWorkoutModal').classList.add('active');
+    };
+
+    window.closeGuidedWorkout = function() {
+      if (workoutTimerInterval) {
+        clearInterval(workoutTimerInterval);
+        workoutTimerInterval = null;
+      }
+      workoutTimerRunning = false;
+      document.getElementById('guidedWorkoutModal').classList.remove('active');
+    };
+
+    window.toggleWorkoutTimer = function() {
+      const btn = document.getElementById('timerStartBtn');
+      if (workoutTimerRunning) {
+        clearInterval(workoutTimerInterval);
+        workoutTimerInterval = null;
+        workoutTimerRunning = false;
+        btn.textContent = '▶ Resume Timer';
+        btn.classList.remove('btn-outline');
+        btn.classList.add('btn-primary');
+      } else {
+        workoutTimerRunning = true;
+        btn.textContent = '⏸ Pause Timer';
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+        workoutTimerInterval = setInterval(() => {
+          workoutTimerSeconds++;
+          const mins = Math.floor(workoutTimerSeconds / 60);
+          const secs = workoutTimerSeconds % 60;
+          document.getElementById('guidedTimerDisplay').textContent =
+            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }, 1000);
+      }
+    };
+
+    window.resetWorkoutTimer = function() {
+      if (workoutTimerInterval) {
+        clearInterval(workoutTimerInterval);
+        workoutTimerInterval = null;
+      }
+      workoutTimerRunning = false;
+      workoutTimerSeconds = 0;
+      const display = document.getElementById('guidedTimerDisplay');
+      if (display) display.textContent = '00:00';
+      const btn = document.getElementById('timerStartBtn');
+      if (btn) {
+        btn.textContent = '▶ Start Timer';
+        btn.classList.remove('btn-outline');
+        btn.classList.add('btn-primary');
+      }
+    };
+
+    window.toggleStepCheck = function(idx) {
+      const row = document.getElementById(`guidedStepRow_${idx}`);
+      const check = document.getElementById(`guidedStepCheck_${idx}`);
+      if (!row || !check) return;
+
+      const isCompleted = !row.classList.contains('completed');
+      row.classList.toggle('completed', isCompleted);
+      check.checked = isCompleted;
+
+      const totalSteps = currentActiveWorkout ? currentActiveWorkout.steps.length : 0;
+      const completedSteps = document.querySelectorAll('#guidedStepsContainer .workout-step-item.completed').length;
+      document.getElementById('guidedCompletedCount').textContent = completedSteps;
+
+      if (completedSteps === totalSteps && totalSteps > 0) {
+        showToast('All exercises completed! Ready to log session.', '🏆');
+      }
+    };
+
+    window.completeGuidedWorkout = function() {
+      if (!currentActiveWorkout) return;
+      const w = currentActiveWorkout;
+      const minsToLog = w.time;
+      zone2Mins += minsToLog;
+      stepsCount += minsToLog * 85;
+
       updateWorkoutDisplays();
-      showToast('Logged 30m Zone-2 Run (+3,200 steps)!', '🏃');
       updateLongevityScore();
+      closeGuidedWorkout();
+      showToast(`🏆 Protocol Completed! Logged ${minsToLog}m and +${minsToLog * 85} steps.`, '⚡');
+    };
+
+    window.quickLogWorkout = function(workoutId) {
+      const w = LONGEVITY_WORKOUTS.find(item => item.id === workoutId);
+      if (!w) return;
+      zone2Mins += w.time;
+      stepsCount += w.time * 85;
+      updateWorkoutDisplays();
+      updateLongevityScore();
+      showToast(`✓ Logged ${w.title} (+${w.time}m)`, '🏃');
     };
 
     window.completeRegimen = function(btn, mins) {
       zone2Mins += mins;
       stepsCount += mins * 100;
-      btn.textContent = 'Completed ✓';
-      btn.classList.add('btn-primary');
-      btn.disabled = true;
+      if (btn) {
+        btn.textContent = 'Completed ✓';
+        btn.classList.add('btn-primary');
+        btn.disabled = true;
+      }
       updateWorkoutDisplays();
       showToast(`Regimen completed: +${mins} mins logged!`, '⚡');
       updateLongevityScore();
     };
 
     function updateWorkoutDisplays() {
-      document.getElementById('fitStepCount').textContent = stepsCount.toLocaleString();
-      document.getElementById('overviewSteps').textContent = stepsCount.toLocaleString();
-      document.getElementById('fitZone2Mins').textContent = zone2Mins + ' min';
-      document.getElementById('overviewZone2').textContent = zone2Mins + 'm';
+      const stepEl1 = document.getElementById('fitStepCount');
+      const stepEl2 = document.getElementById('overviewSteps');
+      const zoneEl1 = document.getElementById('fitZone2Mins');
+      const zoneEl2 = document.getElementById('overviewZone2');
+
+      if (stepEl1) stepEl1.textContent = stepsCount.toLocaleString();
+      if (stepEl2) stepEl2.textContent = stepsCount.toLocaleString();
+      if (zoneEl1) zoneEl1.textContent = zone2Mins + ' min';
+      if (zoneEl2) zoneEl2.textContent = zone2Mins + 'm';
+
+      // Update Weekly Aerobic Base bar
+      const weeklyAerobicMins = 80 + zone2Mins;
+      const pct = Math.min(100, Math.round((weeklyAerobicMins / 150) * 100));
+      const weeklyText = document.getElementById('fitWeeklyAerobicText');
+      const weeklyBar = document.getElementById('fitWeeklyAerobicBar');
+      if (weeklyText) weeklyText.textContent = `${weeklyAerobicMins}m / 150m (${pct}%)`;
+      if (weeklyBar) weeklyBar.style.width = `${pct}%`;
     }
 
     // Item checkoffs
@@ -2622,9 +3206,11 @@
       }, 600);
     };
 
-    // Render initial recipe and nutrition numbers
+    // Render initial recipe, fitness workouts, and display numbers
     renderRecipeCard(LONGEVITY_RECIPES[0]);
     updateNutritionDisplay();
+    renderFitnessWorkouts();
+    updateWorkoutDisplays();
 
     // Service Worker Registration with Immediate Update Check
     if ('serviceWorker' in navigator) {
