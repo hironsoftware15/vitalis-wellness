@@ -308,6 +308,11 @@
       background: rgba(16, 185, 129, 0.08);
       border-color: rgba(16, 185, 129, 0.25);
     }
+    .workout-step-item.active-step {
+      background: rgba(6, 182, 212, 0.15) !important;
+      border-color: rgba(6, 182, 212, 0.7) !important;
+      box-shadow: 0 0 16px rgba(6, 182, 212, 0.25);
+    }
     .workout-step-num {
       width: 22px;
       height: 22px;
@@ -830,6 +835,9 @@
       align-items: center;
       justify-content: center;
       padding: 1rem;
+    }
+    .modal-overlay.active {
+      display: flex !important;
     }
 
     .modal-box {
@@ -1777,15 +1785,24 @@
 
       <!-- Digital Stopwatch Section -->
       <div style="background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: var(--radius-md); padding: 1.25rem; text-align: center; margin-bottom: 1.15rem; position: relative;">
-        <div style="font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #38bdf8; margin-bottom: 0.35rem;">
-          Session Timer
+        <!-- Live Status Pill & Sound Toggle -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
+          <span id="guidedTimerStatus" style="font-size: 0.72rem; font-weight: 700; color: #10b981; display: flex; align-items: center; gap: 0.35rem;">
+            <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span>
+            LIVE SESSION IN PROGRESS
+          </span>
+          <button id="guidedSoundToggle" onclick="toggleWorkoutSound()" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); border-radius: 99px; color: var(--text-muted); font-size: 0.7rem; padding: 0.2rem 0.6rem; cursor: pointer;">
+            🔊 Audio: ON
+          </button>
         </div>
+
         <div class="timer-display" id="guidedTimerDisplay">00:00</div>
         <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.85rem;" id="guidedHrZoneGuidance">
           Target Heart Rate: <strong>125–138 bpm</strong> (Zone 2)
         </div>
-        <div style="display: flex; justify-content: center; gap: 0.6rem;">
-          <button class="btn btn-primary btn-sm" id="timerStartBtn" onclick="toggleWorkoutTimer()">▶ Start Timer</button>
+        <div style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap;">
+          <button class="btn btn-primary btn-sm" id="timerStartBtn" onclick="toggleWorkoutTimer()">⏸ Pause Timer</button>
+          <button class="btn btn-outline btn-sm" id="timerNextBtn" onclick="advanceToNextStep()">⏭ Next Exercise</button>
           <button class="btn btn-outline btn-sm" onclick="resetWorkoutTimer()">↺ Reset</button>
         </div>
       </div>
@@ -2523,19 +2540,109 @@
       }).join('');
     }
 
-    // Interactive Guided Workout Modal & Stopwatch
+    // Interactive Guided Workout Modal, Audio Engine & Stopwatch
     let currentActiveWorkout = null;
     let workoutTimerInterval = null;
     let workoutTimerSeconds = 0;
     let workoutTimerRunning = false;
+    let currentActiveStepIndex = 0;
+    let workoutSoundEnabled = true;
+
+    // Web Audio synthesizer engine for acoustic beeps, chimes and chords
+    function playWorkoutSound(type = 'start') {
+      if (!workoutSoundEnabled) return;
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+
+        if (type === 'start') {
+          // Energetic ascending triad (C5 -> E5 -> G5)
+          const notes = [523.25, 659.25, 783.99];
+          notes.forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.12);
+            gain.gain.setValueAtTime(0.2, ctx.currentTime + i * 0.12);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i * 0.12 + 0.25);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(ctx.currentTime + i * 0.12);
+            osc.stop(ctx.currentTime + i * 0.12 + 0.25);
+          });
+        } else if (type === 'step') {
+          // Crisp completion ding (880Hz A5)
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(880, ctx.currentTime);
+          gain.gain.setValueAtTime(0.25, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.35);
+        } else if (type === 'finish') {
+          // Major celebratory chord (523, 659, 784, 1046 Hz)
+          [523.25, 659.25, 783.99, 1046.50].forEach((freq) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.18, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.7);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.7);
+          });
+        }
+      } catch (err) {
+        console.warn('Audio feedback unavailable:', err);
+      }
+    }
+
+    function speakWorkoutCue(text) {
+      if (!workoutSoundEnabled) return;
+      try {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 1.05;
+          utterance.pitch = 1.0;
+          utterance.volume = 0.85;
+          window.speechSynthesis.speak(utterance);
+        }
+      } catch (err) {
+        console.warn('Speech synthesis unavailable:', err);
+      }
+    }
+
+    window.toggleWorkoutSound = function() {
+      workoutSoundEnabled = !workoutSoundEnabled;
+      const btn = document.getElementById('guidedSoundToggle');
+      if (btn) {
+        btn.textContent = workoutSoundEnabled ? '🔊 Audio: ON' : '🔇 Audio: MUTED';
+        btn.style.color = workoutSoundEnabled ? 'var(--text-main)' : 'var(--text-muted)';
+      }
+      if (workoutSoundEnabled) {
+        playWorkoutSound('step');
+        showToast('Audio & voice cues enabled', '🔊');
+      } else {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        showToast('Audio muted', '🔇');
+      }
+    };
 
     window.openGuidedWorkout = function(workoutId) {
       const workout = LONGEVITY_WORKOUTS.find(w => w.id === workoutId);
       if (!workout) return;
       currentActiveWorkout = workout;
-
-      // Reset stopwatch
-      resetWorkoutTimer();
+      currentActiveStepIndex = 0;
 
       // Populate Modal Content
       document.getElementById('guidedModalCategory').textContent = `${workout.genderLabel} • ${workout.ageLabel}`;
@@ -2548,7 +2655,7 @@
 
       const stepsContainer = document.getElementById('guidedStepsContainer');
       stepsContainer.innerHTML = workout.steps.map((step, idx) => `
-        <div class="workout-step-item" id="guidedStepRow_${idx}" onclick="toggleStepCheck(${idx})">
+        <div class="workout-step-item ${idx === 0 ? 'active-step' : ''}" id="guidedStepRow_${idx}" onclick="toggleStepCheck(${idx})">
           <input type="checkbox" id="guidedStepCheck_${idx}" style="cursor: pointer; margin-top: 2px;" onclick="event.stopPropagation(); toggleStepCheck(${idx})">
           <div class="workout-step-num">${idx + 1}</div>
           <div style="flex: 1;">
@@ -2564,8 +2671,58 @@
       `).join('');
 
       document.getElementById('completeGuidedBtn').textContent = `✓ Complete & Log (+${workout.time}m)`;
-      document.getElementById('guidedWorkoutModal').classList.add('active');
+
+      // Ensure modal is displayed reliably on all browsers and devices
+      const modal = document.getElementById('guidedWorkoutModal');
+      modal.style.display = 'flex';
+      modal.classList.add('active');
+
+      // Automatically play & start timer immediately on user click!
+      startWorkoutTimerAuto();
     };
+
+    function startWorkoutTimerAuto() {
+      if (workoutTimerInterval) {
+        clearInterval(workoutTimerInterval);
+        workoutTimerInterval = null;
+      }
+      workoutTimerSeconds = 0;
+      workoutTimerRunning = true;
+
+      const display = document.getElementById('guidedTimerDisplay');
+      if (display) display.textContent = '00:00';
+
+      const btn = document.getElementById('timerStartBtn');
+      if (btn) {
+        btn.textContent = '⏸ Pause Timer';
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-outline');
+      }
+
+      const statusEl = document.getElementById('guidedTimerStatus');
+      if (statusEl) {
+        statusEl.innerHTML = `<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span> LIVE SESSION IN PROGRESS`;
+        statusEl.style.color = '#10b981';
+      }
+
+      // Start ticker interval
+      workoutTimerInterval = setInterval(() => {
+        workoutTimerSeconds++;
+        const mins = Math.floor(workoutTimerSeconds / 60);
+        const secs = workoutTimerSeconds % 60;
+        const disp = document.getElementById('guidedTimerDisplay');
+        if (disp) {
+          disp.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+      }, 1000);
+
+      // Play start sound & voice guidance
+      playWorkoutSound('start');
+      if (currentActiveWorkout) {
+        speakWorkoutCue(`Starting ${currentActiveWorkout.title}. Target: ${currentActiveWorkout.intensity}`);
+      }
+      showToast('Guided session started! Timer running.', '▶');
+    }
 
     window.closeGuidedWorkout = function() {
       if (workoutTimerInterval) {
@@ -2573,29 +2730,50 @@
         workoutTimerInterval = null;
       }
       workoutTimerRunning = false;
-      document.getElementById('guidedWorkoutModal').classList.remove('active');
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+      const modal = document.getElementById('guidedWorkoutModal');
+      modal.style.display = 'none';
+      modal.classList.remove('active');
     };
 
     window.toggleWorkoutTimer = function() {
       const btn = document.getElementById('timerStartBtn');
+      const statusEl = document.getElementById('guidedTimerStatus');
+
       if (workoutTimerRunning) {
         clearInterval(workoutTimerInterval);
         workoutTimerInterval = null;
         workoutTimerRunning = false;
-        btn.textContent = '▶ Resume Timer';
-        btn.classList.remove('btn-outline');
-        btn.classList.add('btn-primary');
+        if (btn) {
+          btn.textContent = '▶ Resume Timer';
+          btn.classList.remove('btn-outline');
+          btn.classList.add('btn-primary');
+        }
+        if (statusEl) {
+          statusEl.innerHTML = `⏸ PAUSED`;
+          statusEl.style.color = '#fbbf24';
+        }
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
       } else {
         workoutTimerRunning = true;
-        btn.textContent = '⏸ Pause Timer';
-        btn.classList.remove('btn-primary');
-        btn.classList.add('btn-outline');
+        if (btn) {
+          btn.textContent = '⏸ Pause Timer';
+          btn.classList.remove('btn-primary');
+          btn.classList.add('btn-outline');
+        }
+        if (statusEl) {
+          statusEl.innerHTML = `<span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></span> LIVE SESSION IN PROGRESS`;
+          statusEl.style.color = '#10b981';
+        }
+        playWorkoutSound('step');
         workoutTimerInterval = setInterval(() => {
           workoutTimerSeconds++;
           const mins = Math.floor(workoutTimerSeconds / 60);
           const secs = workoutTimerSeconds % 60;
-          document.getElementById('guidedTimerDisplay').textContent =
-            `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+          const disp = document.getElementById('guidedTimerDisplay');
+          if (disp) {
+            disp.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+          }
         }, 1000);
       }
     };
@@ -2615,6 +2793,42 @@
         btn.classList.remove('btn-outline');
         btn.classList.add('btn-primary');
       }
+      const statusEl = document.getElementById('guidedTimerStatus');
+      if (statusEl) {
+        statusEl.innerHTML = `READY`;
+        statusEl.style.color = 'var(--text-muted)';
+      }
+    };
+
+    window.advanceToNextStep = function() {
+      if (!currentActiveWorkout) return;
+      const steps = currentActiveWorkout.steps;
+      
+      // Mark current step completed
+      const currentRow = document.getElementById(`guidedStepRow_${currentActiveStepIndex}`);
+      const currentCheck = document.getElementById(`guidedStepCheck_${currentActiveStepIndex}`);
+      if (currentRow) {
+        currentRow.classList.remove('active-step');
+        currentRow.classList.add('completed');
+      }
+      if (currentCheck) currentCheck.checked = true;
+
+      currentActiveStepIndex++;
+
+      // Update completed count
+      const completedSteps = document.querySelectorAll('#guidedStepsContainer .workout-step-item.completed').length;
+      document.getElementById('guidedCompletedCount').textContent = completedSteps;
+
+      if (currentActiveStepIndex < steps.length) {
+        const nextRow = document.getElementById(`guidedStepRow_${currentActiveStepIndex}`);
+        if (nextRow) nextRow.classList.add('active-step');
+        playWorkoutSound('step');
+        speakWorkoutCue(`Next: ${steps[currentActiveStepIndex].name}. ${steps[currentActiveStepIndex].sets}`);
+      } else {
+        playWorkoutSound('finish');
+        speakWorkoutCue('All exercises completed! Great session.');
+        showToast('🎉 All exercises finished! Tap Complete & Log', '🏆');
+      }
     };
 
     window.toggleStepCheck = function(idx) {
@@ -2624,13 +2838,19 @@
 
       const isCompleted = !row.classList.contains('completed');
       row.classList.toggle('completed', isCompleted);
+      row.classList.remove('active-step');
       check.checked = isCompleted;
 
       const totalSteps = currentActiveWorkout ? currentActiveWorkout.steps.length : 0;
       const completedSteps = document.querySelectorAll('#guidedStepsContainer .workout-step-item.completed').length;
       document.getElementById('guidedCompletedCount').textContent = completedSteps;
 
+      if (isCompleted) {
+        playWorkoutSound('step');
+      }
+
       if (completedSteps === totalSteps && totalSteps > 0) {
+        playWorkoutSound('finish');
         showToast('All exercises completed! Ready to log session.', '🏆');
       }
     };
@@ -2644,6 +2864,7 @@
 
       updateWorkoutDisplays();
       updateLongevityScore();
+      playWorkoutSound('finish');
       closeGuidedWorkout();
       showToast(`🏆 Protocol Completed! Logged ${minsToLog}m and +${minsToLog * 85} steps.`, '⚡');
     };
