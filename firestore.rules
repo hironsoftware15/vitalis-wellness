@@ -2,19 +2,109 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Helper function to verify user authentication
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: /users/{userId}
+    // Document ID: {userId} (matches Firebase Auth UID)
+    // Fields: User profile, target biometrics, biological age
+    //
+    // Collection: /users/{userId}/telemetry/{telemetryId}
+    // Document ID: auto-generated or timestamp-based ID
+    // Fields:
+    //   - source: string (required, max 100 chars) - Hardware/wearable source
+    //   - steps: number (optional, 0 to 200,000) - Daily step count
+    //   - activeCalories: number (optional, 0 to 20,000) - Active calorie expenditure in kcal
+    //   - restingHeartRate: number (optional, 20 to 250) - Resting heart rate in bpm
+    //   - latestHeartRate: number (optional, 20 to 250) - Latest recorded heart rate in bpm
+    //   - hrvSDNN: number (optional, 0 to 1,000) - Heart rate variability SDNN in ms
+    //   - vo2Max: number (optional, 0 to 100) - Estimated VO2 max
+    //   - oxygenSaturation: number (optional, 0 to 100) - SpO2 oxygen saturation percentage
+    //   - sleepMinutes: number (optional, 0 to 1,440) - Total sleep duration in minutes
+    //   - deepSleepMinutes: number (optional, 0 to 1,440) - Deep sleep stage duration in minutes
+    //   - remSleepMinutes: number (optional, 0 to 1,440) - REM sleep stage duration in minutes
+    //   - timestamp: timestamp (optional) - Telemetry collection timestamp
+    //   - platform: string (optional, max 100 chars) - Mobile/wearable OS platform
+    //   - device: string (optional, max 100 chars) - Wearable model identifier
+    //   - updatedAt: timestamp (optional) - Last update timestamp
+    //
+    // Collection: /users/{userId}/wellness/{wellnessId}
+    // Document ID: date or composite identifier
+    // Fields: Identical schema to telemetry for wearable aggregates
+    //
+    // Subcollections:
+    //   - /users/{userId}/fitness_plans/{planId}
+    //   - /users/{userId}/workouts/{workoutId}
+    //   - /users/{userId}/nutrition_logs/{mealId}
+    //   - /users/{userId}/sleep_sessions/{sessionId}
+    //   - /users/{userId}/medications/{medId}
+    //     - /users/{userId}/medications/{medId}/adherence_logs/{logId}
+    //   - /users/{userId}/habits/{habitId}
+    //   - /users/{userId}/coach_conversations/{convId}
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Check if the request is from an authenticated user
     function isAuthenticated() {
       return request.auth != null;
     }
-    
-    // Helper function to verify document ownership
+
+    // Check if the authenticated user is the owner of the document path
     function isOwner(userId) {
       return isAuthenticated() && request.auth.uid == userId;
     }
 
-    // User Profile & Preventive Health Score
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    // Validate wearable telemetry payload (Apple Watch, HealthKit, Health Connect)
+    function isValidTelemetry(data) {
+      return ('source' in data) &&
+        data.source is string &&
+        data.source.size() <= 100 &&
+        data.keys().hasOnly([
+          'steps', 'activeCalories', 'restingHeartRate', 'latestHeartRate',
+          'hrvSDNN', 'vo2Max', 'oxygenSaturation', 'sleepMinutes',
+          'deepSleepMinutes', 'remSleepMinutes', 'timestamp', 'source',
+          'platform', 'device', 'updatedAt'
+        ]) &&
+        (!('steps' in data) || (data.steps is number && data.steps >= 0 && data.steps <= 200000)) &&
+        (!('activeCalories' in data) || (data.activeCalories is number && data.activeCalories >= 0 && data.activeCalories <= 20000)) &&
+        (!('restingHeartRate' in data) || (data.restingHeartRate is number && data.restingHeartRate >= 20 && data.restingHeartRate <= 250)) &&
+        (!('latestHeartRate' in data) || (data.latestHeartRate is number && data.latestHeartRate >= 20 && data.latestHeartRate <= 250)) &&
+        (!('hrvSDNN' in data) || (data.hrvSDNN is number && data.hrvSDNN >= 0 && data.hrvSDNN <= 1000)) &&
+        (!('vo2Max' in data) || (data.vo2Max is number && data.vo2Max >= 0 && data.vo2Max <= 100)) &&
+        (!('oxygenSaturation' in data) || (data.oxygenSaturation is number && data.oxygenSaturation >= 0 && data.oxygenSaturation <= 100)) &&
+        (!('sleepMinutes' in data) || (data.sleepMinutes is number && data.sleepMinutes >= 0 && data.sleepMinutes <= 1440)) &&
+        (!('deepSleepMinutes' in data) || (data.deepSleepMinutes is number && data.deepSleepMinutes >= 0 && data.deepSleepMinutes <= 1440)) &&
+        (!('remSleepMinutes' in data) || (data.remSleepMinutes is number && data.remSleepMinutes >= 0 && data.remSleepMinutes <= 1440)) &&
+        (!('timestamp' in data) || (data.timestamp is timestamp)) &&
+        (!('platform' in data) || (data.platform is string && data.platform.size() <= 100)) &&
+        (!('device' in data) || (data.device is string && data.device.size() <= 100)) &&
+        (!('updatedAt' in data) || (data.updatedAt is timestamp));
+    }
+
+    // User Profile & Preventive Health Root
     match /users/{userId} {
       allow read, write: if isOwner(userId);
+
+      // Wearable telemetry sync (Apple Watch, HealthKit, Health Connect)
+      match /telemetry/{telemetryId} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidTelemetry(request.resource.data);
+      }
+
+      // Wellness daily aggregates and biometrics
+      match /wellness/{wellnessId} {
+        allow read, delete: if isOwner(userId);
+        allow create, update: if isOwner(userId) && isValidTelemetry(request.resource.data);
+      }
 
       // Fitness Plans subcollection
       match /fitness_plans/{planId} {

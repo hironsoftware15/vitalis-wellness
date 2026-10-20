@@ -12,6 +12,7 @@
 		9B0100032A00000000000001 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0100032A00000000000001 /* HealthKitManager.swift */; };
 		9B0100042A00000000000001 /* WebViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0100042A00000000000001 /* WebViewContainer.swift */; };
 		9B0100052A00000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F0100052A00000000000001 /* Assets.xcassets */; };
+		9B0100062A00000000000001 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F0100082A00000000000001 /* GoogleService-Info.plist */; };
 		9BF000012A00000000000001 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF000012A00000000000001 /* HealthKit.framework */; };
 		9BF000022A00000000000001 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FF000022A00000000000001 /* WebKit.framework */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 		9F0100052A00000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9F0100062A00000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9F0100072A00000000000001 /* Vitalis.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Vitalis.entitlements; sourceTree = "<group>"; };
+		9F0100082A00000000000001 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9FF000012A00000000000001 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		9FF000022A00000000000001 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		9FP000012A00000000000001 /* Vitalis.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vitalis.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,7 @@
 				9F0100052A00000000000001 /* Assets.xcassets */,
 				9F0100062A00000000000001 /* Info.plist */,
 				9F0100072A00000000000001 /* Vitalis.entitlements */,
+				9F0100082A00000000000001 /* GoogleService-Info.plist */,
 			);
 			path = Vitalis;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B0100052A00000000000001 /* Assets.xcassets in Resources */,
+				9B0100062A00000000000001 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
