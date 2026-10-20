@@ -2003,7 +2003,7 @@
         <div style="flex: 1;">
           <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;">
             <h3 id="modalUserName" style="font-size: 1.15rem; font-weight: 800; margin-bottom: 0.15rem;">Alex Rivera</h3>
-            <span class="badge-pill" id="modalAuthBadge" style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a;">🟡 On-Device Guest</span>
+            <span class="badge-pill" id="modalAuthBadge" onclick="switchProfileModalTab('auth')" style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a; cursor: pointer;" title="Click to log in or create a cloud account">🟡 On-Device Guest • Tap to Log In</span>
           </div>
           <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; margin-top: 2px;">
             <span style="font-size: 0.75rem; color: var(--text-muted);" id="modalBioAgeDetail">Bio Age: 33.4 yrs (-4.6 pace)</span>
@@ -2117,7 +2117,7 @@
           </div>
           <div style="margin-bottom: 0.85rem;">
             <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Password</label>
-            <input type="password" id="authPasswordInput" class="chat-input" placeholder="••••••••••••" style="width: 100%;">
+            <input type="password" id="authPasswordInput" class="chat-input" placeholder="••••••••••••" style="width: 100%;" onkeydown="if(event.key==='Enter') handleEmailPasswordAuth(false)">
           </div>
 
           <div id="authStatusAlert" style="display: none; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.75rem; margin-bottom: 0.75rem;"></div>
@@ -3301,7 +3301,7 @@
 
     let userProfile = getActiveProfile();
 
-    window.openProfileModal = function() {
+    window.openProfileModal = function(initialTab) {
       userProfile = getActiveProfile();
       const nameInput = document.getElementById('profileNameInput');
       const ageInput = document.getElementById('profileAgeInput');
@@ -3318,7 +3318,8 @@
       updateProfileUI();
       renderProfilesList();
       updateWearableTabStats();
-      switchProfileModalTab('profile');
+      const tabToOpen = initialTab || 'profile';
+      switchProfileModalTab(tabToOpen);
       document.getElementById('profileModal').style.display = 'flex';
     };
 
@@ -3354,10 +3355,11 @@
           modalAvatar.style.background = userProfile.isSignedInApple ? 'linear-gradient(135deg, #000000, #333333)' : 'linear-gradient(135deg, #06b6d4, #0891b2)';
         }
         if (modalAuthBadge) {
-          modalAuthBadge.textContent = userProfile.isSignedInApple ? '🟢  Apple ID Synced' : (userProfile.authProvider === 'google' ? '🟢 Google Cloud Synced' : '🟢 Cloud Account');
+          modalAuthBadge.textContent = userProfile.isSignedInApple ? '🟢  Apple ID Synced' : (userProfile.authProvider === 'google' ? '🟢 Google Cloud Synced' : '🟢 Cloud Account Active');
           modalAuthBadge.style.background = '#dcfce7';
           modalAuthBadge.style.color = '#15803d';
           modalAuthBadge.style.borderColor = '#86efac';
+          modalAuthBadge.style.cursor = 'pointer';
         }
         if (modalSyncNotice) modalSyncNotice.textContent = '● Real-Time Cloud Relay Active';
       } else {
@@ -3366,10 +3368,11 @@
           modalAvatar.style.background = 'linear-gradient(135deg, #06b6d4, #0891b2)';
         }
         if (modalAuthBadge) {
-          modalAuthBadge.textContent = '🟡 On-Device Profile';
+          modalAuthBadge.textContent = '🟡 On-Device Guest • Tap to Log In';
           modalAuthBadge.style.background = '#fef3c7';
           modalAuthBadge.style.color = '#b45309';
           modalAuthBadge.style.borderColor = '#fde68a';
+          modalAuthBadge.style.cursor = 'pointer';
         }
         if (modalSyncNotice) modalSyncNotice.textContent = '● On-Device Storage Mode';
       }
@@ -3388,7 +3391,7 @@
       const headerAvatarBadge = document.getElementById('headerAvatarBadge');
       if (headerAvatarBadge) headerAvatarBadge.textContent = isCloudAuth ? (userProfile.isSignedInApple ? '' : '🟢') : '👤';
       const headerProfileLabel = document.getElementById('headerProfileLabel');
-      if (headerProfileLabel) headerProfileLabel.textContent = userProfile.name.split(' ')[0] || 'Profile';
+      if (headerProfileLabel) headerProfileLabel.textContent = isCloudAuth ? (userProfile.name.split(' ')[0] || 'Profile') : 'Log In / Profile';
     }
 
     window.saveUserProfile = function() {
@@ -3620,9 +3623,14 @@
         const active = getActiveProfile();
         active.email = email;
         active.authProvider = 'password';
+        if (isSignUp && (!active.name || active.name === 'Alex Rivera')) {
+          const derived = email.split('@')[0].replace(/[._-]/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+          active.name = derived;
+        }
+        if (passInput) passInput.value = '';
         saveProfilesStorage();
         updateProfileUI();
-        showToast(`Welcome ${email}! Cloud sync online.`, "🔐");
+        showToast(`Welcome ${active.name || email}! Cloud sync online.`, "🔐");
         setTimeout(() => switchProfileModalTab('wearables'), 1000);
       } catch(err) {
         console.warn("Email auth notice:", err);
