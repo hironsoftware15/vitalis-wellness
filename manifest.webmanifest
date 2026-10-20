@@ -1,7 +1,7 @@
 {
-  "id": "com.vitalis.wellness",
-  "name": "Vitaliq: AI Longevity Coach",
-  "short_name": "Vitaliq",
+  "id": "com.nexvital.wellness",
+  "name": "NexVital: AI Longevity Coach",
+  "short_name": "NexVital",
   "description": "Consumer Preventive Longevity, Zone-2 Fitness, Circadian Nutrition, Sleep Architecture, Medication Adherence & Habit Streaks.",
   "start_url": "https://medicore-wellness.web.app/",
   "scope": "/",

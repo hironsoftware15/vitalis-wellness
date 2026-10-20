@@ -18,7 +18,9 @@ struct WebViewContainer: UIViewRepresentable {
         let configuration = WKWebViewConfiguration()
         let controller = WKUserContentController()
         
-        // Register JavaScript message handler
+        // Register JavaScript message handlers
+        controller.add(context.coordinator, name: "nexvitalHealthKit")
+        controller.add(context.coordinator, name: "vitaliqHealthKit")
         controller.add(context.coordinator, name: "vitalisHealthKit")
         configuration.userContentController = controller
         
@@ -52,7 +54,7 @@ struct WebViewContainer: UIViewRepresentable {
         
         // MARK: - WKScriptMessageHandler
         func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-            guard message.name == "vitalisHealthKit" else { return }
+            guard message.name == "nexvitalHealthKit" || message.name == "vitaliqHealthKit" || message.name == "vitalisHealthKit" else { return }
             
             if let body = message.body as? [String: Any], let action = body["action"] as? String {
                 Task { @MainActor in
@@ -79,7 +81,15 @@ struct WebViewContainer: UIViewRepresentable {
             guard let jsonData = try? JSONSerialization.data(withJSONObject: payload),
                   let jsonString = String(data: jsonData, encoding: .utf8) else { return }
             
-            let jsCode = "if (window.vitalisReceiveAppleHealthData) { window.vitalisReceiveAppleHealthData(\(jsonString)); }"
+            let jsCode = """
+            if (window.nexvitalReceiveAppleHealthData) {
+                window.nexvitalReceiveAppleHealthData(\(jsonString));
+            } else if (window.vitaliqReceiveAppleHealthData) {
+                window.vitaliqReceiveAppleHealthData(\(jsonString));
+            } else if (window.vitalisReceiveAppleHealthData) {
+                window.vitalisReceiveAppleHealthData(\(jsonString));
+            }
+            """
             webView.evaluateJavaScript(jsCode) { result, error in
                 if let error = error {
                     print("Error injecting Apple HealthKit telemetry: \(error)")

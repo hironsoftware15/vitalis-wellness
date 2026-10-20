@@ -3,7 +3,7 @@
  * Provides offline resilience, shell caching, and push notifications
  */
 
-const CACHE_NAME = 'vitaliq-longevity-v4';
+const CACHE_NAME = 'nexvital-longevity-v1';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
