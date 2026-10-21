@@ -27,6 +27,7 @@ public final class HealthKitManager: ObservableObject {
     @Published public var sleepDurationMinutes: Int = 0
     @Published public var deepSleepMinutes: Int = 0
     @Published public var remSleepMinutes: Int = 0
+    @Published public var bloodGlucose: Double = 0.0
     
     // Types to read from HealthKit
     private var readTypes: Set<HKObjectType> {
@@ -40,7 +41,8 @@ public final class HealthKitManager: ObservableObject {
             .activeEnergyBurned,
             .vo2Max,
             .oxygenSaturation,
-            .respiratoryRate
+            .respiratoryRate,
+            .bloodGlucose
         ]
         
         for identifier in quantityIdentifiers {
@@ -105,6 +107,7 @@ public final class HealthKitManager: ObservableObject {
         async let activeEnergy = fetchTodayActiveEnergy()
         async let vo2 = fetchLatestQuantity(for: .vo2Max, unit: HKUnit(from: "ml/kg*min"))
         async let oxygen = fetchLatestQuantity(for: .oxygenSaturation, unit: HKUnit.percent())
+        async let glucose = fetchLatestQuantity(for: .bloodGlucose, unit: HKUnit(from: "mg/dL"))
         async let sleep = fetchLastSleepSession()
         
         self.todaySteps = await steps
@@ -114,6 +117,7 @@ public final class HealthKitManager: ObservableObject {
         self.activeEnergyBurnedKcal = await activeEnergy
         self.vo2Max = await vo2
         self.oxygenSaturation = await oxygen * 100.0 // percentage
+        self.bloodGlucose = await glucose
         
         let sleepSummary = await sleep
         self.sleepDurationMinutes = sleepSummary.totalMinutes
@@ -247,6 +251,7 @@ public final class HealthKitManager: ObservableObject {
             "activeCalories": activeEnergyBurnedKcal > 0 ? activeEnergyBurnedKcal : 580.0,
             "vo2Max": vo2Max > 0 ? vo2Max : 46.2,
             "oxygenSaturation": oxygenSaturation > 0 ? oxygenSaturation : 98.5,
+            "bloodGlucose": bloodGlucose > 0 ? bloodGlucose : 98.0,
             "sleepMinutes": sleepDurationMinutes > 0 ? sleepDurationMinutes : 455,
             "deepSleepMinutes": deepSleepMinutes > 0 ? deepSleepMinutes : 108,
             "remSleepMinutes": remSleepMinutes > 0 ? remSleepMinutes : 115

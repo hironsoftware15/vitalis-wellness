@@ -24,6 +24,7 @@ service cloud.firestore {
     //   - sleepMinutes: number (optional, 0 to 1,440) - Total sleep duration in minutes
     //   - deepSleepMinutes: number (optional, 0 to 1,440) - Deep sleep stage duration in minutes
     //   - remSleepMinutes: number (optional, 0 to 1,440) - REM sleep stage duration in minutes
+    //   - bloodGlucose: number (optional, 20 to 600) - Blood glucose level in mg/dL
     //   - timestamp: timestamp (optional) - Telemetry collection timestamp
     //   - platform: string (optional, max 100 chars) - Mobile/wearable OS platform
     //   - device: string (optional, max 100 chars) - Wearable model identifier
@@ -72,7 +73,7 @@ service cloud.firestore {
           'steps', 'activeCalories', 'restingHeartRate', 'latestHeartRate',
           'hrvSDNN', 'vo2Max', 'oxygenSaturation', 'sleepMinutes',
           'deepSleepMinutes', 'remSleepMinutes', 'timestamp', 'source',
-          'platform', 'device', 'updatedAt'
+          'platform', 'device', 'updatedAt', 'bloodGlucose'
         ]) &&
         (!('steps' in data) || (data.steps is number && data.steps >= 0 && data.steps <= 200000)) &&
         (!('activeCalories' in data) || (data.activeCalories is number && data.activeCalories >= 0 && data.activeCalories <= 20000)) &&
@@ -84,6 +85,7 @@ service cloud.firestore {
         (!('sleepMinutes' in data) || (data.sleepMinutes is number && data.sleepMinutes >= 0 && data.sleepMinutes <= 1440)) &&
         (!('deepSleepMinutes' in data) || (data.deepSleepMinutes is number && data.deepSleepMinutes >= 0 && data.deepSleepMinutes <= 1440)) &&
         (!('remSleepMinutes' in data) || (data.remSleepMinutes is number && data.remSleepMinutes >= 0 && data.remSleepMinutes <= 1440)) &&
+        (!('bloodGlucose' in data) || (data.bloodGlucose is number && data.bloodGlucose >= 20 && data.bloodGlucose <= 600)) &&
         (!('timestamp' in data) || (data.timestamp is timestamp)) &&
         (!('platform' in data) || (data.platform is string && data.platform.size() <= 100)) &&
         (!('device' in data) || (data.device is string && data.device.size() <= 100)) &&
