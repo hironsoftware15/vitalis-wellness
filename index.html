@@ -2391,7 +2391,7 @@
       
       <div style="margin-bottom: 1.25rem;">
         <span style="font-size: 2.2rem; display: inline-block; margin-bottom: 0.25rem;">🪪</span>
-        <h2 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 0.25rem;">Vitalis Longevity Passport</h2>
+        <h2 style="font-size: 1.25rem; font-weight: 800; color: #fff; margin-bottom: 0.25rem;">NexVital Longevity Passport</h2>
         <div style="font-size: 0.76rem; color: #94a3b8;">Cryptographically Verified Biological Healthspan &amp; Habit Equity</div>
       </div>
 
@@ -4808,7 +4808,7 @@
     window.copyPassportSummary = function() {
       const curLvlObj = LONGEVITY_LEVELS[userLevel - 1] || LONGEVITY_LEVELS[2];
       const userName = (window.currentProfileName) ? window.currentProfileName : 'Marcus Vance';
-      const summaryText = `🧬 Vitalis Longevity Passport\n👤 ${userName} • Level ${userLevel}: ${curLvlObj.title}\n🔥 ${habitStreakDays}-Day Longevity Streak • Score: ${longevityScore}/100\n📉 Biological Age: -4.6 yrs younger than chronological pace\n💎 Cumulative Equity: 182 Meals Analyzed • 420 Wearable Syncs\n⚡ Live Platform: https://medicore-wellness.web.app`;
+      const summaryText = `🧬 NexVital Longevity Passport\n👤 ${userName} • Level ${userLevel}: ${curLvlObj.title}\n🔥 ${habitStreakDays}-Day Longevity Streak • Score: ${longevityScore}/100\n📉 Biological Age: -4.6 yrs younger than chronological pace\n💎 Cumulative Equity: 182 Meals Analyzed • 420 Wearable Syncs\n⚡ Live Platform: https://medicore-wellness.web.app`;
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(summaryText).then(() => {

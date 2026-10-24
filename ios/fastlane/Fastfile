@@ -61,6 +61,10 @@ platform :ios do
       build_configurations: ["Release"]
     )
 
+    # Automatically set monotonically increasing CFBundleVersion from GITHUB_RUN_NUMBER or timestamp
+    build_num = ENV["GITHUB_RUN_NUMBER"] ? (ENV["GITHUB_RUN_NUMBER"].to_i + 10).to_s : Time.now.strftime("%m%d%H%M")
+    sh("/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion #{build_num}\" ../Vitalis/Info.plist")
+
     build_app(
       project: "Vitalis.xcodeproj",
       scheme: "Vitalis",
