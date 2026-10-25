@@ -7,7 +7,7 @@ import SwiftUI
  */
 struct ContentView: View {
     @StateObject private var healthKitManager = HealthKitManager.shared
-    private let appURL = URL(string: "https://nexvital.com")!
+    private let appURL = URL(string: "https://medicore-wellness.web.app")!
     
     var body: some View {
         ZStack {

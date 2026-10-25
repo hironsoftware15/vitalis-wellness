@@ -92,7 +92,7 @@
             <!-- TWA Configuration Meta-data -->
             <meta-data
                 android:name="android.support.customtabs.trusted.DEFAULT_URL"
-                android:value="https://nexvital.com/" />
+                android:value="https://medicore-wellness.web.app/" />
 
             <meta-data
                 android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"
