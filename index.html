@@ -1220,11 +1220,11 @@
                 <div class="card-icon" style="background: #dcfce7; color: #16a34a;">🥗</div>
                 <div class="card-title">Nutrition &amp; Fasting</div>
               </div>
-              <span class="card-badge" style="background: #dcfce7; color: #15803d;">1,750 / 2,100 kcal</span>
+              <span class="card-badge" id="overviewCalBadge" style="background: #dcfce7; color: #15803d;">1,750 / 2,100 kcal</span>
             </div>
             <div class="stat-grid-4">
               <div class="stat-box">
-                <div class="stat-val">138g</div>
+                <div class="stat-val" id="overviewProteinVal">138g</div>
                 <div class="stat-label">Protein (1.6g/kg)</div>
               </div>
               <div class="stat-box">
@@ -1232,8 +1232,8 @@
                 <div class="stat-label">Hydration Goal</div>
               </div>
             </div>
-            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.85rem;">
-              Circadian 16:8 Fasting: <strong>14h 20m completed</strong>. Eating window closes at 8:00 PM.
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.85rem;" id="overviewFastingNotice">
+              Circadian 16:8 Fasting: <strong>14h 25m completed</strong>. Eating window closes at 8:00 PM.
             </div>
           </div>
 
@@ -1557,6 +1557,26 @@
               </div>
             </div>
           </div>
+
+          <!-- Today's Logged Longevity Meals History -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 1.25rem; margin-top: 1.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 0.5rem;">
+              <div style="display: flex; align-items: center; gap: 0.45rem;">
+                <span style="font-size: 1.15rem;">🍽️</span>
+                <strong style="font-size: 0.95rem; font-weight: 800; color: var(--text-main);">Today's Logged Meals &amp; Bioactives</strong>
+              </div>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <span class="badge-pill" id="loggedMealsCountBadge" style="background: rgba(16,185,129,0.15); color: #34d399; font-size: 0.7rem; font-weight: 700;">3 Meals Logged</span>
+                <button class="btn btn-outline btn-sm" onclick="openMealModal('scan')" style="font-size: 0.72rem; padding: 0.2rem 0.55rem; color: #22d3ee; border-color: rgba(6,182,212,0.4);">+ Add Meal</button>
+              </div>
+            </div>
+
+            <!-- List of logged meals -->
+            <div id="todayMealsListContainer" style="display: flex; flex-direction: column; gap: 0.65rem;">
+              <!-- Dynamically populated meal items -->
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -2074,14 +2094,22 @@
             <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Meal Name</label>
             <input type="text" id="mealTitleInput" class="chat-input" placeholder="e.g. Greek Yogurt with Walnuts &amp; Blueberries" style="width: 100%;">
           </div>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45rem;">
             <div>
-              <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Calories (kcal)</label>
-              <input type="number" id="mealCalInput" class="chat-input" placeholder="450" value="450" style="width: 100%;">
+              <label style="font-size: 0.72rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Calories</label>
+              <input type="number" id="mealCalInput" class="chat-input" placeholder="450" value="450" style="width: 100%; text-align: center;">
             </div>
             <div>
-              <label style="font-size: 0.75rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Protein (g)</label>
-              <input type="number" id="mealProteinInput" class="chat-input" placeholder="38" value="38" style="width: 100%;">
+              <label style="font-size: 0.72rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Protein (g)</label>
+              <input type="number" id="mealProteinInput" class="chat-input" placeholder="38" value="38" style="width: 100%; text-align: center;">
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Carbs (g)</label>
+              <input type="number" id="mealCarbsInput" class="chat-input" placeholder="32" value="32" style="width: 100%; text-align: center;">
+            </div>
+            <div>
+              <label style="font-size: 0.72rem; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Fat (g)</label>
+              <input type="number" id="mealFatInput" class="chat-input" placeholder="15" value="15" style="width: 100%; text-align: center;">
             </div>
           </div>
         </div>
@@ -2455,19 +2483,38 @@
   <script>
     // State
     let longevityScore = 91;
-    let waterLiters = 2.4;
+    let waterLiters = parseFloat(localStorage.getItem('vitalis_water_liters') || '2.4');
     let stepsCount = 8420;
     let zone2Mins = 42;
     let currentPillar = 'overview';
     let geminiApiKey = localStorage.getItem('GEMINI_API_KEY') || '';
 
     // Nutrition & Recipe Architecture
-    let caloriesConsumed = 1750;
+    let caloriesConsumed = parseInt(localStorage.getItem('vitalis_cal_consumed') || '1750');
     let targetCalories = 2100;
-    let proteinConsumed = 138;
+    let proteinConsumed = parseInt(localStorage.getItem('vitalis_protein_consumed') || '138');
     let targetProtein = 160;
+    let carbsConsumed = parseInt(localStorage.getItem('vitalis_carbs_consumed') || '175');
+    let targetCarbs = 210;
+    let fatConsumed = parseInt(localStorage.getItem('vitalis_fat_consumed') || '54');
+    let targetFat = 65;
     let currentRecipeIndex = 0;
     let activeRecipeFilter = 'all';
+
+    // Baseline initial logged meals for today
+    const DEFAULT_TODAY_MEALS = [
+      { id: "m-1", title: "Pasture-Raised Eggs & Avocado on Sourdough", time: "08:30 AM", calories: 520, protein: 32, carbs: 42, fat: 24, source: "📸 AI Camera Scan", bioactives: "Choline, Lutein, Oleic Acid" },
+      { id: "m-2", title: "Wild Alaskan Salmon & Quinoa Bowl", time: "12:45 PM", calories: 680, protein: 56, carbs: 75, fat: 18, source: "🌱 Longevity Recipe", bioactives: "EPA/DHA Omega-3s, Astaxanthin" },
+      { id: "m-3", title: "Greek Yogurt with Raw Walnuts & Wild Blueberries", time: "16:20 PM", calories: 550, protein: 50, carbs: 58, fat: 12, source: "📸 AI Camera Scan", bioactives: "Anthocyanins, Ellagic Acid, Probiotics" }
+    ];
+
+    let todayLoggedMeals = [];
+    try {
+      const savedMeals = localStorage.getItem('vitalis_today_meals');
+      todayLoggedMeals = savedMeals ? JSON.parse(savedMeals) : DEFAULT_TODAY_MEALS;
+    } catch(e) {
+      todayLoggedMeals = DEFAULT_TODAY_MEALS;
+    }
 
     const LONGEVITY_RECIPES = [
       {
@@ -2625,7 +2672,7 @@
     window.logCurrentRecipe = function() {
       const list = getFilteredRecipes();
       const rec = list[currentRecipeIndex] || LONGEVITY_RECIPES[0];
-      logNutritionIntake(rec.calories, rec.protein, rec.title);
+      logNutritionIntake(rec.calories, rec.protein, rec.title, rec.carbs, rec.fat, "🌱 Longevity Recipe", rec.bioactives);
     };
 
     window.askCoachAboutCurrentRecipe = function() {
@@ -2634,22 +2681,119 @@
       askCoach(`Detail the clinical longevity mechanism, cellular pathways, and prep steps for: ${rec.title}`);
     };
 
-    function logNutritionIntake(cal, protein, mealTitle) {
+    function saveNutritionState() {
+      localStorage.setItem('vitalis_cal_consumed', caloriesConsumed);
+      localStorage.setItem('vitalis_protein_consumed', proteinConsumed);
+      localStorage.setItem('vitalis_carbs_consumed', carbsConsumed);
+      localStorage.setItem('vitalis_fat_consumed', fatConsumed);
+      localStorage.setItem('vitalis_today_meals', JSON.stringify(todayLoggedMeals));
+    }
+
+    function logNutritionIntake(cal, protein, mealTitle, carbs = 0, fat = 0, source = "📸 AI Camera Scan", bioactives = "") {
       caloriesConsumed += cal;
       proteinConsumed += protein;
+      carbsConsumed += carbs;
+      fatConsumed += fat;
+
+      const newMeal = {
+        id: "m-" + Date.now(),
+        title: mealTitle,
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+        calories: cal,
+        protein: protein,
+        carbs: carbs,
+        fat: fat,
+        source: source,
+        bioactives: bioactives || "Bioavailable Micronutrients, Balanced Macro Substrates"
+      };
+      todayLoggedMeals.unshift(newMeal);
+      saveNutritionState();
+
       updateNutritionDisplay();
       if (window.awardLongevityXp) window.awardLongevityXp(25, `Nutrition: ${mealTitle}`);
+      if (window.playCelebrationChime) window.playCelebrationChime();
       showToast(`Logged ${mealTitle} (+${cal} kcal, +${protein}g protein)!`, '🥗');
       updateLongevityScore();
+    }
+
+    window.removeLoggedMeal = function(mealId) {
+      const idx = todayLoggedMeals.findIndex(m => m.id === mealId);
+      if (idx === -1) return;
+      const removed = todayLoggedMeals.splice(idx, 1)[0];
+      caloriesConsumed = Math.max(0, caloriesConsumed - (removed.calories || 0));
+      proteinConsumed = Math.max(0, proteinConsumed - (removed.protein || 0));
+      carbsConsumed = Math.max(0, carbsConsumed - (removed.carbs || 0));
+      fatConsumed = Math.max(0, fatConsumed - (removed.fat || 0));
+      saveNutritionState();
+      updateNutritionDisplay();
+      showToast(`Removed "${removed.title}" (-${removed.calories} kcal)`, '↺');
+      updateLongevityScore();
+    };
+
+    function renderTodayMealsList() {
+      const container = document.getElementById('todayMealsListContainer');
+      const countBadge = document.getElementById('loggedMealsCountBadge');
+      if (!container) return;
+
+      if (countBadge) {
+        countBadge.textContent = `${todayLoggedMeals.length} Meal${todayLoggedMeals.length === 1 ? '' : 's'} Logged`;
+      }
+
+      if (todayLoggedMeals.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 1.5rem; color: var(--text-muted); font-size: 0.8rem; border: 1px dashed var(--border); border-radius: var(--radius-sm);">
+            No meals logged yet today. Use <strong>📸 Scan Plate</strong> or <strong>⚡ Log Recipe</strong> above.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = todayLoggedMeals.map(m => {
+        let badgeColor = '#22d3ee';
+        let badgeBg = 'rgba(6,182,212,0.12)';
+        if (m.source && m.source.includes('Recipe')) {
+          badgeColor = '#34d399';
+          badgeBg = 'rgba(16,185,129,0.12)';
+        } else if (m.source && m.source.includes('Manual')) {
+          badgeColor = '#fbbf24';
+          badgeBg = 'rgba(245,158,11,0.12)';
+        }
+
+        return `
+          <div class="card item-row" style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem 0.9rem; background: rgba(255,255,255,0.02); border: 1px solid var(--border); border-radius: var(--radius-sm); gap: 0.75rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 200px;">
+              <div style="display: flex; align-items: center; gap: 0.45rem; margin-bottom: 0.25rem;">
+                <span style="font-size: 0.65rem; background: ${badgeBg}; color: ${badgeColor}; padding: 2px 7px; border-radius: 99px; font-weight: 700;">${m.source || '📸 AI Scan'}</span>
+                <span style="font-size: 0.72rem; color: var(--text-muted);">${m.time || 'Today'}</span>
+              </div>
+              <strong style="font-size: 0.88rem; color: #f8fafc; display: block; margin-bottom: 0.2rem;">${m.title}</strong>
+              <div style="font-size: 0.72rem; color: var(--text-muted);">
+                ${m.bioactives ? `🧬 ${m.bioactives}` : 'Whole Food Bio-Actives'}
+              </div>
+            </div>
+            
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <div style="text-align: right;">
+                <div style="font-size: 0.95rem; font-weight: 800; color: #fbbf24; font-family: 'Space Grotesk', sans-serif;">+${m.calories} kcal</div>
+                <div style="font-size: 0.7rem; color: var(--text-muted);">${m.protein}g P • ${m.carbs || 0}g C • ${m.fat || 0}g F</div>
+              </div>
+              <button onclick="removeLoggedMeal('${m.id}')" title="Delete logged meal" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); color: #f87171; border-radius: 6px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 0.75rem; transition: background 0.2s;">✕</button>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     function updateNutritionDisplay() {
       const calEl = document.getElementById('calBudgetText');
       const remEl = document.getElementById('calRemainingText');
       const protEl = document.getElementById('proteinBudgetText');
+      const carbsEl = document.getElementById('carbsBudgetText');
+      const fatEl = document.getElementById('fatBudgetText');
       const recipeRem = document.getElementById('recipeRemainingKcal');
       const remain = Math.max(0, targetCalories - caloriesConsumed);
 
+      // Nutrition Tab
       if (calEl) calEl.textContent = `${caloriesConsumed.toLocaleString()} / ${targetCalories.toLocaleString()} kcal`;
       if (remEl) {
         if (remain > 0) {
@@ -2661,7 +2805,24 @@
         }
       }
       if (protEl) protEl.textContent = `${proteinConsumed}g / ${targetProtein}g`;
+      if (carbsEl) carbsEl.textContent = `${carbsConsumed}g / ${targetCarbs}g`;
+      if (fatEl) fatEl.textContent = `${fatConsumed}g / ${targetFat}g`;
       if (recipeRem) recipeRem.textContent = `${remain} kcal`;
+
+      // Overview Tab Live Synchronization
+      const ovCal = document.getElementById('overviewCalBadge');
+      if (ovCal) ovCal.textContent = `${caloriesConsumed.toLocaleString()} / ${targetCalories.toLocaleString()} kcal`;
+      const ovProt = document.getElementById('overviewProteinVal');
+      if (ovProt) ovProt.textContent = `${proteinConsumed}g`;
+      const ovFast = document.getElementById('overviewFastingNotice');
+      if (ovFast) {
+        ovFast.innerHTML = isFasting
+          ? 'Circadian 16:8 Fasting: <strong>14h 25m completed</strong>. Eating window closes at 8:00 PM.'
+          : 'Circadian Eating Window: <strong>Open</strong>. Fasting commences at 8:00 PM.';
+      }
+
+      // Re-render Logged Meals List
+      renderTodayMealsList();
     }
 
     // Switch Pillar Views
@@ -2687,6 +2848,7 @@
     // Water Tracker
     window.addWater = function(amount = 0.25) {
       waterLiters = +(waterLiters + amount).toFixed(2);
+      localStorage.setItem('vitalis_water_liters', waterLiters);
       document.getElementById('overviewWater').textContent = waterLiters + 'L';
       document.getElementById('waterLitersText').textContent = waterLiters + ' Liters / 3.0L Target';
       showToast(`Logged +${Math.round(amount * 1000)}ml water! Total: ${waterLiters}L`, '💧');
@@ -2695,6 +2857,7 @@
 
     window.resetWater = function() {
       waterLiters = 0;
+      localStorage.setItem('vitalis_water_liters', '0');
       document.getElementById('overviewWater').textContent = '0L';
       document.getElementById('waterLitersText').textContent = '0 Liters / 3.0L Target';
       showToast('Hydration counter reset', '💧');
@@ -3368,20 +3531,26 @@
     };
 
     // Fasting window
-    let isFasting = true;
+    let isFasting = localStorage.getItem('vitalis_is_fasting') !== '0';
     window.toggleFastingWindow = function() {
       isFasting = !isFasting;
+      localStorage.setItem('vitalis_is_fasting', isFasting ? '1' : '0');
       const btn = document.getElementById('toggleFastBtn');
       const text = document.getElementById('fastingTimerText');
+      const ovNotice = document.getElementById('overviewFastingNotice');
       if (isFasting) {
-        btn.textContent = '⏱️ End Fasting Window';
-        text.textContent = '14h 25m Fasted';
+        if (btn) btn.textContent = '⏱️ End Fasting Window';
+        if (text) text.textContent = '14h 25m Fasted';
+        if (ovNotice) ovNotice.innerHTML = 'Circadian 16:8 Fasting: <strong>14h 25m completed</strong>. Eating window closes at 8:00 PM.';
         showToast('Circadian fast started', '⏱️');
       } else {
-        btn.textContent = '⏱️ Start Fasting Window';
-        text.textContent = 'Eating Window Open';
+        if (btn) btn.textContent = '⏱️ Start Fasting Window';
+        if (text) text.textContent = 'Eating Window Open';
+        if (ovNotice) ovNotice.innerHTML = 'Circadian Eating Window: <strong>Open</strong>. Fasting commences at 8:00 PM.';
         showToast('Eating window opened', '🥗');
       }
+      if (window.awardLongevityXp) window.awardLongevityXp(10, isFasting ? "Circadian Fast Initiated" : "Metabolic Window Logged");
+      if (window.playCelebrationChime) window.playCelebrationChime();
     };
 
     // Longevity Score Calculation
@@ -4361,8 +4530,9 @@
       const protein = parseInt(document.getElementById('aiMealProtein')?.value) || 35;
       const carbs = parseInt(document.getElementById('aiMealCarbs')?.value) || 25;
       const fat = parseInt(document.getElementById('aiMealFat')?.value) || 15;
+      const bioactives = document.getElementById('aiMealBioactives')?.textContent?.replace(/^🧬\s*Longevity Compounds:\s*/i, '').trim() || 'Omega-3, Astaxanthin, Sulforaphane';
 
-      logNutritionIntake(cal, protein, title);
+      logNutritionIntake(cal, protein, title, carbs, fat, "📸 AI Camera Scan", bioactives);
 
       // Record to Cloud Firestore if user is authenticated
       if (fbDb && currentUser) {
@@ -4372,6 +4542,7 @@
           protein: protein,
           carbs: carbs,
           fat: fat,
+          bioactives: bioactives,
           source: "NexVital Gemini Vision Scan",
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         }).catch(err => console.warn("Cloud meal log notice:", err));
@@ -4379,14 +4550,15 @@
 
       closeModal('mealModal');
       clearMealPhoto();
-      showToast(`Scanned meal logged: +${cal} kcal, +${protein}g protein!`, '🥗');
     };
 
     window.saveCustomMeal = function() {
-      const title = document.getElementById('mealTitleInput').value || 'Nutritious Meal';
-      const cal = parseInt(document.getElementById('mealCalInput').value) || 450;
-      const protein = parseInt(document.getElementById('mealProteinInput').value) || 35;
-      logNutritionIntake(cal, protein, title);
+      const title = document.getElementById('mealTitleInput')?.value || 'Nutritious Meal';
+      const cal = parseInt(document.getElementById('mealCalInput')?.value) || 450;
+      const protein = parseInt(document.getElementById('mealProteinInput')?.value) || 38;
+      const carbs = parseInt(document.getElementById('mealCarbsInput')?.value) || 32;
+      const fat = parseInt(document.getElementById('mealFatInput')?.value) || 15;
+      logNutritionIntake(cal, protein, title, carbs, fat, "✏️ Manual Entry", "Balanced Whole Food Macros");
       closeModal('mealModal');
     };
 
