@@ -2317,9 +2317,15 @@
 
           <div id="authStatusAlert" style="display: none; padding: 0.5rem 0.75rem; border-radius: var(--radius-sm); font-size: 0.75rem; margin-bottom: 0.75rem;"></div>
 
-          <div style="display: flex; gap: 0.5rem;">
+          <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
             <button class="btn btn-outline" style="flex: 1; font-size: 0.82rem;" id="emailSignInBtn" onclick="handleEmailPasswordAuth(false)">Log In</button>
             <button class="btn btn-primary" style="flex: 1; font-size: 0.82rem;" id="emailSignUpBtn" onclick="handleEmailPasswordAuth(true)">Create Account</button>
+          </div>
+
+          <!-- App Store Reviewer 1-Tap Demo Login -->
+          <div style="padding-top: 0.65rem; border-top: 1px dashed var(--border); display: flex; justify-content: space-between; align-items: center;">
+            <span style="font-size: 0.72rem; color: var(--text-muted);">Reviewer Demo Account:</span>
+            <button class="btn btn-outline btn-sm" type="button" style="font-size: 0.72rem; padding: 0.25rem 0.65rem; border-color: #38bdf8; color: #38bdf8;" onclick="fillReviewerDemoAccount()">✨ 1-Tap Demo Login</button>
           </div>
         </div>
       </div>
@@ -4070,6 +4076,14 @@
         console.warn("Email auth notice:", err);
         showAlert(err.message || 'Authentication error', '#f43f5e');
       }
+    };
+
+    window.fillReviewerDemoAccount = function() {
+      const emailInput = document.getElementById('authEmailInput');
+      const passInput = document.getElementById('authPasswordInput');
+      if (emailInput) emailInput.value = 'apple.review@nexvital.com';
+      if (passInput) passInput.value = 'NexVital2026!Review';
+      handleEmailPasswordAuth(false);
     };
 
     window.handleUniversalSignOut = async function() {
