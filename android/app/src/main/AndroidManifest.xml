@@ -53,6 +53,27 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data
                     android:scheme="https"
+                    android:host="nexvital.com"
+                    android:pathPrefix="/" />
+            </intent-filter>
+
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
+                    android:host="www.nexvital.com"
+                    android:pathPrefix="/" />
+            </intent-filter>
+
+            <!-- Also capture fallback hosting domain -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data
+                    android:scheme="https"
                     android:host="medicore-wellness.web.app"
                     android:pathPrefix="/" />
             </intent-filter>
@@ -71,7 +92,7 @@
             <!-- TWA Configuration Meta-data -->
             <meta-data
                 android:name="android.support.customtabs.trusted.DEFAULT_URL"
-                android:value="https://medicore-wellness.web.app/" />
+                android:value="https://nexvital.com/" />
 
             <meta-data
                 android:name="android.support.customtabs.trusted.STATUS_BAR_COLOR"

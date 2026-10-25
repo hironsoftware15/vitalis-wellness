@@ -5,8 +5,8 @@ import com.google.androidbrowserhelper.trusted.LauncherActivity
 
 /**
  * LauncherActivity
- * Entry point for the Aegis Preventive Health standalone Android app.
- * Utilizes Trusted Web Activity (TWA) to render https://medicore-wellness.web.app
+ * Entry point for the NexVital Preventive Health standalone Android app.
+ * Utilizes Trusted Web Activity (TWA) to render https://nexvital.com
  * in a seamless, chrome-less native container verified by Digital Asset Links.
  */
 class LauncherActivity : LauncherActivity() {

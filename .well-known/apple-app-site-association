@@ -3,12 +3,12 @@
     "apps": [],
     "details": [
       {
-        "appID": "TEAMID.com.vitalis.wellness",
+        "appID": "RMX4QDBMGY.com.vitalis.wellness",
         "paths": [ "*", "/" ]
       }
     ]
   },
   "webcredentials": {
-    "apps": [ "TEAMID.com.vitalis.wellness" ]
+    "apps": [ "RMX4QDBMGY.com.vitalis.wellness" ]
   }
 }

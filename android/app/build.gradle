@@ -20,10 +20,10 @@ android {
         }
 
         // TWA configuration resValues
-        resValue "string", "appName", "Vitalis"
-        resValue "string", "hostName", "medicore-wellness.web.app"
-        resValue "string", "defaultUrl", "https://medicore-wellness.web.app/"
-        resValue "string", "webManifestUrl", "https://medicore-wellness.web.app/manifest.webmanifest"
+        resValue "string", "appName", "NexVital"
+        resValue "string", "hostName", "nexvital.com"
+        resValue "string", "defaultUrl", "https://nexvital.com/"
+        resValue "string", "webManifestUrl", "https://nexvital.com/manifest.webmanifest"
     }
 
     signingConfigs {
