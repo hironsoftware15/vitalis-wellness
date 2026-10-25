@@ -3,7 +3,7 @@
   "name": "NexVital: AI Longevity Coach",
   "short_name": "NexVital",
   "description": "Consumer Preventive Longevity, Zone-2 Fitness, Circadian Nutrition, Sleep Architecture, Medication Adherence & Habit Streaks.",
-  "start_url": "https://medicore-wellness.web.app/",
+  "start_url": "https://nexvital.com/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",
@@ -42,25 +42,25 @@
       "name": "Log Workout",
       "short_name": "Workout",
       "description": "Log Zone-2 cardio or resistance training",
-      "url": "https://medicore-wellness.web.app/#fitness"
+      "url": "https://nexvital.com/#fitness"
     },
     {
       "name": "Nutrition & Fasting",
       "short_name": "Nutrition",
       "description": "Log meals, water, and fasting window",
-      "url": "https://medicore-wellness.web.app/#nutrition"
+      "url": "https://nexvital.com/#nutrition"
     },
     {
       "name": "Medications",
       "short_name": "Meds",
       "description": "Check off scheduled daily longevity supplements and medications",
-      "url": "https://medicore-wellness.web.app/#medications"
+      "url": "https://nexvital.com/#medications"
     },
     {
       "name": "Longevity Coach",
       "short_name": "AI Coach",
       "description": "Chat with your Gemini 3.8 Flash longevity coach",
-      "url": "https://medicore-wellness.web.app/#coach"
+      "url": "https://nexvital.com/#coach"
     }
   ],
   "prefer_related_applications": false

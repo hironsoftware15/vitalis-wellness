@@ -98,7 +98,7 @@ ios/
 3. Register App ID: **`com.vitalis.wellness`**.
 4. Under **Capabilities**, enable:
    * **HealthKit** (Enable *HealthKit* and *Background Delivery*).
-   * **Associated Domains** (Add `applinks:medicore-wellness.web.app`).
+   * **Associated Domains** (Add `applinks:nexvital.com` and `applinks:medicore-wellness.web.app`).
    * **Push Notifications** (For medication adherence and circadian sleep reminders).
 
 ---
@@ -106,10 +106,10 @@ ios/
 ### Step 2: App Store Connect App Record
 1. Log in to [appstoreconnect.apple.com](https://appstoreconnect.apple.com).
 2. Click **My Apps** -> **+ New App**:
-   * **Name:** `Vitalis: AI Longevity Coach`
+   * **Name:** `NexVital: AI Longevity Coach`
    * **Primary Language:** `English (U.S.)`
    * **Bundle ID:** `com.vitalis.wellness`
-   * **SKU:** `vitalis-longevity-ios`
+   * **SKU:** `nexvital-longevity-ios`
    * **User Access:** Full Access.
 3. **Primary Category:** `Health & Fitness` -> **Secondary Category:** `Medical` or `Lifestyle`.
 
@@ -117,10 +117,10 @@ ios/
 
 ### Step 3: Store Listing Graphics & Metadata
 * **App Icon:** Upload [`assets/icon-1024.png`](file:///Users/ataurrahman/.gemini/antigravity/scratch/preventive-health-app/assets/icon-1024.png) (1024 x 1024 px PNG, no transparency, sRGB).
-* **Privacy Policy URL:** `https://medicore-wellness.web.app/privacy-policy.html` (Must be public and live).
+* **Privacy Policy URL:** `https://nexvital.com/privacy-policy.html` (or `https://medicore-wellness.web.app/privacy-policy.html`).
 * **Subtitle (30 chars):** `AI Longevity & Health Tracker`
 * **Promotional Text:**
-  > Optimize your biological age. Vitalis connects with Apple Watch, HealthKit, and continuous glucose monitors to deliver personalized circadian fitness, nutrition, sleep, and medication coaching.
+  > Optimize your biological age. NexVital connects with Apple Watch, HealthKit, and continuous glucose monitors to deliver personalized circadian fitness, nutrition, sleep, and medication coaching.
 * **Keywords:** `longevity, healthkit, apple watch, hrv, zone 2, cgm, fasting, sleep stages, whoop, oura`
 
 ---

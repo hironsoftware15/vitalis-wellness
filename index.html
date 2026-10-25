@@ -8,6 +8,11 @@
   <meta name="theme-color" content="#080c14">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="canonical" href="https://nexvital.com/">
+  <meta property="og:title" content="NexVital — AI Longevity & Preventive Health Coach">
+  <meta property="og:description" content="Consumer Preventive Longevity, Zone-2 Fitness, Circadian Nutrition, Sleep Architecture, Medication Adherence & Habit Streaks.">
+  <meta property="og:url" content="https://nexvital.com/">
+  <meta property="og:image" content="https://nexvital.com/assets/feature-graphic.png">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" type="image/png" href="assets/icon-512.png">
   <link rel="apple-touch-icon" href="assets/icon-512.png">
@@ -2174,7 +2179,8 @@
       </p>
       <div style="background: #f8fafc; border: 1px solid var(--border); padding: 0.85rem; border-radius: var(--radius-sm); margin-bottom: 1rem; font-size: 0.8rem;">
         <div>Project ID: <strong>rugged-alcove-388517</strong></div>
-        <div>Multi-Site: <strong>medicore-wellness.web.app</strong></div>
+        <div>Primary Domain: <strong>nexvital.com</strong></div>
+        <div>Firebase CDN: <strong>medicore-wellness.web.app</strong></div>
         <div>Firestore Path: <strong>/users/{patientId}/wellness</strong></div>
       </div>
       <button class="btn btn-primary" style="width: 100%;" onclick="closeModal('firebaseModal')">Done</button>
@@ -4980,7 +4986,7 @@
     window.copyPassportSummary = function() {
       const curLvlObj = LONGEVITY_LEVELS[userLevel - 1] || LONGEVITY_LEVELS[2];
       const userName = (window.currentProfileName) ? window.currentProfileName : 'Marcus Vance';
-      const summaryText = `🧬 NexVital Longevity Passport\n👤 ${userName} • Level ${userLevel}: ${curLvlObj.title}\n🔥 ${habitStreakDays}-Day Longevity Streak • Score: ${longevityScore}/100\n📉 Biological Age: -4.6 yrs younger than chronological pace\n💎 Cumulative Equity: 182 Meals Analyzed • 420 Wearable Syncs\n⚡ Live Platform: https://medicore-wellness.web.app`;
+      const summaryText = `🧬 NexVital Longevity Passport\n👤 ${userName} • Level ${userLevel}: ${curLvlObj.title}\n🔥 ${habitStreakDays}-Day Longevity Streak • Score: ${longevityScore}/100\n📉 Biological Age: -4.6 yrs younger than chronological pace\n💎 Cumulative Equity: 182 Meals Analyzed • 420 Wearable Syncs\n⚡ Live Platform: https://nexvital.com`;
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(summaryText).then(() => {
